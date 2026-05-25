@@ -1,0 +1,348 @@
+.about-hero {
+  position: relative;
+  min-height: 65vh;
+}
+
+.about-hero__img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.about-hero .page-hero-overlay {
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.about-hero .page-hero-content {
+  z-index: 2;
+}
+
+.about-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.about-stat {
+  text-align: center;
+}
+
+.about-stat__val {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.about-stat__lbl {
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+/* Timeline (Easy-to-Read Modern Card Journey) */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-left: 0;
+}
+
+.timeline::before {
+  display: none; /* Hide old vertical line */
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: var(--white);
+  border: 1px solid rgba(92, 51, 23, 0.08);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: 0 4px 16px rgba(92, 51, 23, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.timeline-item::before {
+  display: none; /* Hide old bullet dots */
+}
+
+.timeline-year {
+  background: var(--grad-gold);
+  color: var(--dark);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 0;
+}
+
+.timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.timeline-content h4 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0;
+}
+
+.timeline-content p {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Hover-slide micro-interaction */
+.timeline-item:hover {
+  transform: translateX(8px);
+  border-color: var(--gold);
+  box-shadow: 0 8px 24px rgba(201, 162, 39, 0.08);
+}
+
+/* Mission Vision */
+.mv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.mv-card {
+  padding: 40px 32px;
+  border-radius: var(--radius-xl);
+  transition: var(--transition);
+}
+
+.mv-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.mv-card--mission {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.mv-card--vision {
+  background: var(--dark);
+  color: var(--white);
+}
+
+.mv-card--values {
+  background: linear-gradient(135deg, #3d1a00, #6b3210);
+  color: var(--white);
+}
+
+.mv-card__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+
+.mv-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.mv-card p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+/* Values */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.value-card {
+  padding: 32px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-light);
+  transition: var(--transition);
+}
+
+.value-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: var(--primary);
+}
+
+.value-card__icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: rgba(27, 61, 47, 0.06); /* Premium soft sage-green tint matching the image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #1b3d2f; /* Deep elegant forest green matching the image */
+  transition: var(--transition);
+}
+
+.value-card:hover .value-card__icon {
+  background-color: #1b3d2f; /* Fills with deep forest green on hover */
+  color: var(--white);
+  transform: scale(1.08) rotate(6deg); /* Dynamic micro-animation */
+}
+
+.value-card h3 {
+  font-family: var(--font-sub);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.value-card p {
+  font-size: 0.875rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+/* Why */
+.why-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.why-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.why-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Team */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.team-card {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--cream);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-light);
+  transition: var(--transition);
+}
+
+.team-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.team-card__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--grad-green);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.team-card__name {
+  font-family: var(--font-sub);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.team-card__role {
+  font-size: 0.82rem;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+
+.team-card__location {
+  font-size: 0.78rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+
+  .about-split,
+  .why-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .mv-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .why-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}

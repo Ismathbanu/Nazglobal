@@ -1,0 +1,961 @@
+/* ============================================================
+   PREMIUM DATES PAGE — LUXURY DARK THEME
+   ============================================================ */
+
+/* ---- HERO ---- */
+.dates-hero {
+  position: relative;
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.dates-hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.dates-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dates-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(5, 15, 5, 0.94) 0%,
+      rgba(15, 30, 10, 0.88) 50%,
+      rgba(30, 50, 20, 0.8) 100%);
+}
+
+.dates-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: calc(var(--navbar-h) + 96px) 0 96px;
+}
+
+.dates-hero__stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+.dates-hero__stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.dates-hero__stat svg {
+  color: var(--gold);
+}
+
+.dates-hero__stat strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+.dates-hero__stat span {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---- DARK LUXURY SECTION ---- */
+.dates-section {
+  background: linear-gradient(180deg, #0a1a0a 0%, #0d1f0d 100%);
+  color: var(--white);
+}
+
+.dates-section .section-title {
+  color: var(--white);
+}
+
+.dates-section .section-subtitle {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ---- ABOUT FARM FRESH ---- */
+.dates-about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.dates-about__visual {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  height: 440px;
+  border: 1px solid rgba(201, 162, 39, 0.15);
+}
+
+.dates-about__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.dates-about__visual:hover img {
+  transform: scale(1.05);
+}
+
+.dates-about__text {
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.85;
+}
+
+.dates-about__features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.dates-about__feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.dates-about__feature svg {
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ---- DATE VARIETY CARDS (LIGHT PREMIUM THEME) ---- */
+.date-varieties-section {
+  padding: 80px 0;
+  background: var(--cream);
+}
+
+.date-varieties-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.date-variety-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.date-variety-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 20px 40px rgba(201, 162, 39, 0.12);
+}
+
+.date-variety-card__image-wrap {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.date-variety-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.date-variety-card:hover .date-variety-card__image {
+  transform: scale(1.06);
+}
+
+.date-variety-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+}
+
+/* Floating Grade Tag */
+.date-variety-card__grade {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: rgba(61, 107, 61, 0.85); /* Premium green tag */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.date-variety-card:hover .date-variety-card__grade {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+/* Card Body */
+.date-variety-card__body {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.date-variety-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 2px;
+}
+
+.date-variety-card__subtitle {
+  font-size: 0.85rem;
+  color: var(--gold);
+  font-style: italic;
+  margin-bottom: 18px;
+}
+
+/* Specs Board */
+.date-variety-card__specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.date-spec {
+  background: rgba(0, 0, 0, 0.01);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  border-radius: 12px;
+  padding: 12px;
+  transition: all 0.3s ease;
+}
+
+.date-variety-card:hover .date-spec {
+  background: var(--primary-light);
+  border-color: rgba(61, 107, 61, 0.1);
+}
+
+.date-spec span {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.date-spec strong {
+  font-size: 0.82rem;
+  color: var(--dark);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Benefits list */
+.date-variety-card__benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.date-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.date-benefit__check {
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.date-benefit__text {
+  font-size: 0.82rem;
+  color: var(--gray);
+  line-height: 1.4;
+}
+
+/* Footer Button */
+.date-variety-card__footer {
+  margin-top: 24px;
+}
+
+.date-variety-card__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-family: var(--font-sub);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--grad-green);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-green);
+  cursor: pointer;
+}
+
+.date-variety-card__btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(61, 107, 61, 0.35);
+}
+
+/* ---- PREMIUM PACKS V2 (USER-FRIENDLY & HIGH-CONTRAST GOURMET SHOWCASE) ---- */
+.dates-packs-section-v2 {
+  background-color: var(--cream); /* Luxury soft warm ivory cream */
+  padding: 120px 0;
+  color: var(--dark);
+  border-top: 1px solid rgba(92, 51, 23, 0.08);
+  border-bottom: 1px solid rgba(92, 51, 23, 0.08);
+}
+
+.packs-v2-1kg-block {
+  margin-bottom: 112px;
+}
+
+.packs-v2-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--primary); /* Deep Espresso Brown */
+  margin-bottom: 16px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.packs-v2-section-desc {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--dark-2); /* High visibility slate-espresso */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 2x2 Grid of highly polished gourmet cards */
+.packs-v2-1kg-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+  margin-top: 64px;
+}
+
+.pack-v2-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: 28px;
+  border: 1px solid rgba(92, 51, 23, 0.08);
+  box-shadow: 0 4px 24px rgba(92, 51, 23, 0.03);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pack-v2-card-image-wrap {
+  position: relative;
+  background-color: #FAF6EE; /* Exquisite light warm ivory card banner background */
+  width: 100%;
+  aspect-ratio: 1.45 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(92, 51, 23, 0.05);
+}
+
+/* Floating Gourmet Badge Pill */
+.pack-v2-badge-tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--grad-gold);
+  color: var(--dark);
+  font-family: var(--font-sub);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-sm);
+  z-index: 3;
+}
+
+.pack-v2-image {
+  max-width: 78%;
+  max-height: 78%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(92, 51, 23, 0.12));
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+/* Card Content Details */
+.pack-v2-card-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.pack-v2-card-name {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.pack-v2-card-text {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--gray);
+  margin-bottom: 24px;
+}
+
+/* Elegant User-Friendly 2x2 Spec Grid */
+.pack-v2-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.pack-v2-spec-item {
+  background-color: var(--cream);
+  border: 1px solid rgba(92, 51, 23, 0.05);
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: all 0.3s ease;
+}
+
+.pack-v2-card:hover .pack-v2-spec-item {
+  background-color: var(--primary-light);
+  border-color: rgba(92, 51, 23, 0.1);
+}
+
+.pack-v2-spec-item span {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold-dark);
+  margin-bottom: 3px;
+}
+
+.pack-v2-spec-item strong {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+/* Interactive Direct Inquiry B2B Button */
+.pack-v2-card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-family: var(--font-sub);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.pack-v2-card-btn:hover {
+  background: var(--gold);
+  color: var(--dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Hover lift and card interactions */
+.pack-v2-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 20px 48px rgba(92, 51, 23, 0.1);
+}
+
+.pack-v2-card:hover .pack-v2-image {
+  transform: scale(1.05); /* Gentle zoom effect */
+}
+
+/* 5 KG Bottom Feature Block */
+.packs-v2-5kg-block {
+  border-top: 1px solid rgba(92, 51, 23, 0.12);
+  padding-top: 100px;
+}
+
+.packs-v2-5kg-split {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.packs-v2-5kg-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.packs-v2-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-family: var(--font-sub);
+  font-size: 0.72rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 6px 18px;
+  border-radius: 30px;
+  margin-bottom: 24px;
+  background-color: rgba(201, 162, 39, 0.05);
+}
+
+.packs-v2-5kg-desc {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--dark-2);
+  margin-bottom: 32px;
+}
+
+/* B2B Export Spec Sheet Grid styling */
+.mazafati-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.mazafati-spec-pill {
+  background-color: var(--white);
+  border: 1px solid rgba(92, 51, 23, 0.08);
+  border-radius: 16px;
+  padding: 14px 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(92, 51, 23, 0.02);
+}
+
+.mazafati-spec-pill:hover {
+  border-color: var(--gold);
+  box-shadow: 0 8px 24px rgba(201, 162, 39, 0.08);
+}
+
+.mazafati-spec-pill span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray);
+  margin-bottom: 4px;
+}
+
+.mazafati-spec-pill strong {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* Bulk Specs Rows */
+.packs-v2-badge-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-top: 1px solid rgba(92, 51, 23, 0.08);
+  padding-top: 32px;
+}
+
+.packs-v2-badge-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.packs-v2-badge-item .gold-icon {
+  color: var(--gold);
+  background-color: var(--primary-light);
+  padding: 10px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.packs-v2-badge-item h4 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.packs-v2-badge-item p {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+/* Right-side 3D Packaging Showroom Frame */
+.packs-v2-5kg-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.pack-v2-5kg-image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 40px;
+}
+
+/* 3D backlit aura ring */
+.mazafati-backdrop-halo {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.22) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.pack-v2-5kg-image {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 48px rgba(92, 51, 23, 0.2));
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.pack-v2-5kg-image:hover {
+  transform: translateY(-10px) scale(1.03);
+}
+
+/* Responsive adjustment for packs v2 */
+@media (max-width: 1024px) {
+  .packs-v2-1kg-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .packs-v2-5kg-split {
+    grid-template-columns: 1fr;
+    gap: 64px;
+    text-align: center;
+  }
+
+  .packs-v2-5kg-left {
+    align-items: center;
+  }
+
+  .packs-v2-badge {
+    align-self: center;
+  }
+
+  .packs-v2-badge-item {
+    text-align: left;
+  }
+
+  .mazafati-specs-grid {
+    width: 100%;
+  }
+
+  .packs-v2-badge-row {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dates-packs-section-v2 {
+    padding: 80px 0;
+  }
+
+  .pack-v2-card-image-wrap {
+    aspect-ratio: 1.35 / 1;
+  }
+
+  .pack-v2-card-content {
+    padding: 24px;
+  }
+
+  .pack-v2-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .mazafati-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* ---- WHOLESALE SECTION ---- */
+.dates-wholesale-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.dates-wholesale-card {
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(201, 162, 39, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 36px 24px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.dates-wholesale-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 162, 39, 0.3);
+}
+
+.dates-wholesale-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.dates-wholesale-card h3 {
+  font-family: var(--font-sub);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.dates-wholesale-card p {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
+
+/* ---- GLOBAL IMPORT COUNTRIES ---- */
+.dates-countries-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.dates-country-chip {
+  padding: 10px 24px;
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  border-radius: var(--radius-full);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-sub);
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: rgba(201, 162, 39, 0.06);
+  transition: var(--transition);
+  cursor: default;
+}
+
+.dates-country-chip:hover {
+  background: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+}
+
+/* ---- INQUIRY CTA ---- */
+.dates-cta-section {
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.08) 0%, rgba(10, 26, 10, 0.95) 100%);
+  border: 1px solid rgba(201, 162, 39, 0.15);
+  border-radius: var(--radius-xl);
+  padding: 64px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dates-cta-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.15), transparent 70%);
+  border-radius: 50%;
+  animation: floatSoft 6s ease-in-out infinite;
+}
+
+/* ---- EXPORT SPECS TABLE ---- */
+.export-specs-table {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.export-spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: var(--transition);
+}
+
+.export-spec-row:last-child {
+  border-bottom: none;
+}
+
+.export-spec-row:hover {
+  background: rgba(201, 162, 39, 0.05);
+}
+
+.export-spec-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+}
+
+.export-spec-value {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+/* ---- HEALTH BENEFITS ---- */
+.benefit-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  border: 1px solid var(--gray-light);
+  transition: var(--transition);
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.benefit-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.benefit-card h3 {
+  font-family: var(--font-sub);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.benefit-card p {
+  font-size: 0.82rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1024px) {
+  .dates-about {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .dates-about__visual {
+    height: 340px;
+  }
+
+  .date-varieties-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .dates-packs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dates-wholesale-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dates-hero__stats {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .dates-about__features {
+    grid-template-columns: 1fr;
+  }
+
+  .dates-packaging-showcase {
+    height: 320px;
+  }
+
+  .dates-wholesale-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dates-cta-section {
+    padding: 40px 24px;
+  }
+
+  .date-varieties-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

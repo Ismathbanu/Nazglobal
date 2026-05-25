@@ -1,0 +1,326 @@
+/* ============================================================
+   OUR BRANDS PAGE STYLES
+   ============================================================ */
+
+/* ---- HERO ---- */
+.brands-hero {
+  min-height: 55vh;
+}
+
+/* ---- BRANDS LIST ---- */
+.brands-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* ---- BRAND DETAIL CARD ---- */
+.brand-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: stretch;
+}
+
+.brand-detail--reverse {
+  direction: rtl;
+}
+
+.brand-detail--reverse > * {
+  direction: ltr;
+}
+
+/* Visual Half */
+.brand-detail__visual {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 36px;
+}
+
+.brand-detail__visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+}
+
+.brand-detail__visual:hover .brand-detail__visual-img {
+  transform: scale(1.04);
+}
+
+.brand-detail__visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+.brand-detail__visual-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-detail__emoji {
+  font-size: 4rem;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  animation: floatBrand 3s ease-in-out infinite;
+}
+
+@keyframes floatBrand {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.brand-detail__badge {
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sub);
+  font-size: 0.82rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+}
+
+.brand-detail__markets {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.82rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.brand-detail__markets strong {
+  display: block;
+  font-family: var(--font-sub);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 6px;
+}
+
+/* Content Half */
+.brand-detail__content {
+  padding: 16px 0;
+}
+
+.brand-accent-bar {
+  width: 56px;
+  height: 4px;
+  border-radius: 99px;
+  margin-bottom: 24px;
+}
+
+.brand-detail__name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.brand-detail__tagline {
+  font-family: var(--font-sub);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.brand-detail__desc {
+  color: var(--gray);
+  line-height: 1.85;
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+}
+
+/* Brand Products Grid */
+.brand-detail__products {
+  margin-bottom: 28px;
+}
+
+.brand-detail__products strong {
+  display: block;
+  font-family: var(--font-sub);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 14px;
+}
+
+.brand-product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.brand-product-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1px solid;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sub);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.brand-product-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Brand Story Section */
+.brand-story {
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-top: 20px;
+  border: 1px solid var(--gray-light);
+}
+
+.brand-story__title {
+  font-family: var(--font-sub);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-story p {
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+/* ---- BRAND OVERVIEW CARDS ---- */
+.brands-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.brand-overview-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--gray-light);
+  transition: var(--transition);
+}
+
+.brand-overview-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.brand-overview-card__visual {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.brand-overview-card__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.brand-overview-card:hover .brand-overview-card__visual img {
+  transform: scale(1.08);
+}
+
+.brand-overview-card__body {
+  padding: 28px 24px;
+}
+
+.brand-overview-card__body h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.brand-overview-card__body p {
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.brand-overview-card__products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.brand-overview-card__products .tag {
+  font-size: 0.72rem;
+}
+
+/* ---- CTA BOX ---- */
+.brand-cta-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-cta-box::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.2), transparent 70%);
+  border-radius: 50%;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1024px) {
+  .brand-detail {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .brand-detail--reverse {
+    direction: ltr;
+  }
+
+  .brand-detail__visual {
+    min-height: 380px;
+  }
+
+  .brands-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .brands-list-container {
+    gap: 56px;
+  }
+
+  .brand-detail__visual {
+    min-height: 300px;
+    padding: 32px 24px;
+  }
+
+  .brand-detail__emoji {
+    font-size: 3rem;
+  }
+}
