@@ -1,78 +1,187 @@
 /* ============================================================
-   PREMIUM DATES PAGE — LUXURY DARK THEME
+   PREMIUM DATES PAGE — Clean & Fresh
    ============================================================ */
 
 /* ---- HERO ---- */
 .dates-hero {
   position: relative;
-  min-height: 75vh;
+  overflow: hidden;
+  background-color: #0B1F14;
+}
+
+/* Full-bleed layout: text left, image right */
+.dates-hero__full-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  min-height: 560px;
+}
+
+/* Left text side */
+.dates-hero__left {
+  padding: calc(var(--navbar-h, 72px) + 72px) 64px 72px 8%;
+  background-color: #0B1F14;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 2;
+  position: relative;
+}
+
+.dates-hero__script {
+  font-family: 'Satisfy', 'Georgia', cursive;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: #D4AF37;
+  line-height: 1;
+  margin-bottom: 0;
+  display: block;
+}
+
+.dates-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 9vw, 7rem);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 0.95;
+  margin: 0 0 28px 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dates-hero__desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 460px;
+}
+
+/* Badge row at bottom of left side */
+.dates-hero__badges {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.dates-hero__badge-item {
   display: flex;
   align-items: center;
+  gap: 12px;
+}
+
+.dates-hero__badge-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212, 175, 55, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.dates-hero__badge-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #D4AF37;
+}
+
+.dates-hero__badge-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.dates-hero__badge-text strong {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.dates-hero__badge-text span {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-style: italic;
+}
+
+/* Right side — full-bleed image (like about section) */
+.dates-hero__visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
   overflow: hidden;
+  z-index: 1;
 }
 
-.dates-hero__bg {
-  position: absolute;
-  inset: 0;
-}
-
-.dates-hero__bg img {
+.dates-hero__visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.dates-hero__overlay {
+/* Gradient fade from dark green into the image on the left edge */
+.dates-hero__visual::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,
-      rgba(5, 15, 5, 0.94) 0%,
-      rgba(15, 30, 10, 0.88) 50%,
-      rgba(30, 50, 20, 0.8) 100%);
-}
-
-.dates-hero__content {
-  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to right,
+    #0B1F14 0%,
+    rgba(11, 31, 20, 0.92) 12%,
+    rgba(11, 31, 20, 0.5) 40%,
+    transparent 65%
+  );
+  pointer-events: none;
   z-index: 2;
-  padding: calc(var(--navbar-h) + 96px) 0 96px;
 }
 
+/* Legacy stats — keep for backwards compat */
 .dates-hero__stats {
   display: flex;
-  gap: 32px;
+  gap: 28px;
   flex-wrap: wrap;
-  margin-top: 48px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(201, 162, 39, 0.2);
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .dates-hero__stat {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: rgba(255, 255, 255, 0.8);
+  gap: 11px;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .dates-hero__stat svg {
-  color: var(--gold);
+  color: var(--gold-light);
 }
 
 .dates-hero__stat strong {
   display: block;
   font-family: var(--font-heading);
   font-weight: 700;
-  color: var(--gold);
-  font-size: 0.95rem;
+  color: var(--gold-light);
+  font-size: 0.9rem;
 }
 
 .dates-hero__stat span {
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.55);
 }
 
-/* ---- DARK LUXURY SECTION ---- */
+/* ---- DATES SECTION (dark bg) ---- */
 .dates-section {
-  background: linear-gradient(180deg, #0a1a0a 0%, #0d1f0d 100%);
+  background: #111827;
   color: var(--white);
 }
 
@@ -81,14 +190,14 @@
 }
 
 .dates-section .section-subtitle {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.62);
 }
 
-/* ---- ABOUT FARM FRESH ---- */
+/* ---- ABOUT SECTION ---- */
 .dates-about {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 72px;
+  gap: 64px;
   align-items: center;
 }
 
@@ -96,58 +205,58 @@
   position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  height: 440px;
-  border: 1px solid rgba(201, 162, 39, 0.15);
+  height: 420px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .dates-about__visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.5s ease;
 }
 
 .dates-about__visual:hover img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .dates-about__text {
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.82;
 }
 
 .dates-about__features {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 28px;
+  gap: 14px;
+  margin-top: 24px;
 }
 
 .dates-about__feature {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.8);
+  gap: 9px;
+  font-size: 0.855rem;
+  color: rgba(255, 255, 255, 0.78);
   font-weight: 500;
 }
 
 .dates-about__feature svg {
-  color: var(--gold);
+  color: var(--gold-light);
   flex-shrink: 0;
 }
 
-/* ---- DATE VARIETY CARDS (LIGHT PREMIUM THEME) ---- */
+/* ---- DATE VARIETY CARDS ---- */
 .date-varieties-section {
-  padding: 80px 0;
+  padding: 72px 0;
   background: var(--cream);
 }
 
 .date-varieties-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 48px;
+  gap: 20px;
+  margin-top: 40px;
 }
 
 .date-variety-card {
@@ -155,21 +264,20 @@
   display: flex;
   flex-direction: column;
   background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: var(--transition);
 }
 
 .date-variety-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--gold);
-  box-shadow: 0 20px 40px rgba(201, 162, 39, 0.12);
+  transform: translateY(-4px);
+  border-color: rgba(232, 146, 10, 0.30);
+  box-shadow: 0 12px 36px rgba(232, 146, 10, 0.10);
 }
 
 .date-variety-card__image-wrap {
-  height: 200px;
+  height: 190px;
   position: relative;
   overflow: hidden;
 }
@@ -178,37 +286,34 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s ease;
 }
 
 .date-variety-card:hover .date-variety-card__image {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .date-variety-card__image-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(17, 24, 39, 0.38) 0%, transparent 65%);
 }
 
-/* Floating Grade Tag */
+/* Grade Tag */
 .date-variety-card__grade {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  font-size: 0.72rem;
+  top: 14px;
+  right: 14px;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--white);
-  background: rgba(61, 107, 61, 0.85); /* Premium green tag */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 4px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.3s ease;
+  background: var(--primary);
+  padding: 3px 10px;
+  border-radius: var(--radius-xs);
   z-index: 2;
+  transition: var(--transition);
 }
 
 .date-variety-card:hover .date-variety-card__grade {
@@ -218,7 +323,7 @@
 
 /* Card Body */
 .date-variety-card__body {
-  padding: 28px 24px;
+  padding: 24px 22px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -226,54 +331,55 @@
 
 .date-variety-card__title {
   font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-weight: 800;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: var(--dark);
   margin-bottom: 2px;
+  letter-spacing: -0.02em;
 }
 
 .date-variety-card__subtitle {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--gold);
   font-style: italic;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 /* Specs Board */
 .date-variety-card__specs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
-  padding: 16px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .date-spec {
-  background: rgba(0, 0, 0, 0.01);
-  border: 1px solid rgba(0, 0, 0, 0.03);
-  border-radius: 12px;
-  padding: 12px;
-  transition: all 0.3s ease;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  transition: var(--transition);
 }
 
 .date-variety-card:hover .date-spec {
   background: var(--primary-light);
-  border-color: rgba(61, 107, 61, 0.1);
+  border-color: var(--border-green);
 }
 
 .date-spec span {
   display: block;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   color: var(--gray);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 4px;
+  letter-spacing: 0.07em;
+  margin-bottom: 3px;
 }
 
 .date-spec strong {
-  font-size: 0.82rem;
+  font-size: 0.80rem;
   color: var(--dark);
   font-weight: 600;
   line-height: 1.3;
@@ -283,542 +389,490 @@
 .date-variety-card__benefits {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
   flex-grow: 1;
 }
 
 .date-benefit {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 9px;
 }
 
 .date-benefit__check {
   color: var(--primary);
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.3;
 }
 
 .date-benefit__text {
-  font-size: 0.82rem;
+  font-size: 0.80rem;
   color: var(--gray);
   line-height: 1.4;
 }
 
 /* Footer Button */
 .date-variety-card__footer {
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 .date-variety-card__btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 7px;
   width: 100%;
-  padding: 14px;
-  border-radius: 12px;
+  padding: 12px;
+  border-radius: var(--radius-md);
   font-family: var(--font-sub);
-  font-size: 0.88rem;
+  font-size: 0.855rem;
   font-weight: 700;
   color: var(--white);
-  background: var(--grad-green);
+  background: var(--primary);
   text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-green);
+  transition: var(--transition);
   cursor: pointer;
 }
 
 .date-variety-card__btn:hover {
   background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(61, 107, 61, 0.35);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-green);
 }
 
-/* ---- PREMIUM PACKS V2 (USER-FRIENDLY & HIGH-CONTRAST GOURMET SHOWCASE) ---- */
-.dates-packs-section-v2 {
-  background-color: var(--cream); /* Luxury soft warm ivory cream */
-  padding: 120px 0;
-  color: var(--dark);
-  border-top: 1px solid rgba(92, 51, 23, 0.08);
-  border-bottom: 1px solid rgba(92, 51, 23, 0.08);
-}
-
-.packs-v2-1kg-block {
-  margin-bottom: 112px;
-}
-
-.packs-v2-section-title {
-  font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  font-weight: 800;
-  color: var(--primary); /* Deep Espresso Brown */
-  margin-bottom: 16px;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-}
-
-.packs-v2-section-desc {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: var(--dark-2); /* High visibility slate-espresso */
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* 2x2 Grid of highly polished gourmet cards */
-.packs-v2-1kg-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 48px;
-  margin-top: 64px;
-}
-
-.pack-v2-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--white);
-  border-radius: 28px;
-  border: 1px solid rgba(92, 51, 23, 0.08);
-  box-shadow: 0 4px 24px rgba(92, 51, 23, 0.03);
+/* ---- PREMIUM PACKS V2 ---- */
+/* ============================================================
+   1 KG PREMIUM PACKS SECTION
+   ============================================================ */
+.packs-1kg-section {
+  background-color: #FCFBF7;
+  padding: 80px 0;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-top: 1px solid #F3F4F6;
+  border-bottom: 1px solid #F3F4F6;
 }
 
-.pack-v2-card-image-wrap {
-  position: relative;
-  background-color: #FAF6EE; /* Exquisite light warm ivory card banner background */
-  width: 100%;
-  aspect-ratio: 1.45 / 1;
+.packs-1kg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+.packs-1kg-label {
+  font-family: 'Satisfy', 'Georgia', cursive;
+  font-size: 1.8rem;
+  color: #C9A227;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.packs-1kg-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: #10301B;
+  line-height: 1.1;
+}
+
+.packs-1kg-emblem {
+  margin-top: 10px;
+}
+
+.packs-1kg-emblem-star {
+  color: #C9A227;
+  font-size: 1.2rem;
+}
+
+.packs-1kg-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.packs-1kg-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #D1D5DB;
+  background-color: transparent;
+  color: #374151;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.packs-1kg-nav-btn:hover {
+  background-color: #10301B;
+  color: #ffffff;
+  border-color: #10301B;
+}
+
+/* Carousel wrapper */
+.packs-1kg-carousel-wrap {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 4px 30px;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.packs-1kg-carousel-wrap::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+/* Card item */
+.pack-1kg-card {
+  flex: 0 0 calc(20% - 20px);
+  min-width: 260px;
+  scroll-snap-align: start;
+  background-color: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  border-bottom: 1px solid rgba(92, 51, 23, 0.05);
-}
-
-/* Floating Gourmet Badge Pill */
-.pack-v2-badge-tag {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background: var(--grad-gold);
-  color: var(--dark);
-  font-family: var(--font-sub);
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: var(--shadow-sm);
-  z-index: 3;
-}
-
-.pack-v2-image {
-  max-width: 78%;
-  max-height: 78%;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 24px rgba(92, 51, 23, 0.12));
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 2;
-}
-
-/* Card Content Details */
-.pack-v2-card-content {
-  padding: 32px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.pack-1kg-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: #C9A227;
+}
+
+.pack-1kg-card__image-wrap {
+  aspect-ratio: 1.35;
+  width: 100%;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.pack-1kg-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.pack-1kg-card:hover .pack-1kg-card__image {
+  transform: scale(1.04);
+}
+
+.pack-1kg-card__content {
+  padding: 24px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-grow: 1;
 }
 
-.pack-v2-card-name {
+.pack-1kg-card__name {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--primary);
-  margin-bottom: 12px;
-}
-
-.pack-v2-card-text {
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: var(--gray);
-  margin-bottom: 24px;
-}
-
-/* Elegant User-Friendly 2x2 Spec Grid */
-.pack-v2-specs-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: 32px;
-}
-
-.pack-v2-spec-item {
-  background-color: var(--cream);
-  border: 1px solid rgba(92, 51, 23, 0.05);
-  border-radius: 12px;
-  padding: 10px 14px;
-  transition: all 0.3s ease;
-}
-
-.pack-v2-card:hover .pack-v2-spec-item {
-  background-color: var(--primary-light);
-  border-color: rgba(92, 51, 23, 0.1);
-}
-
-.pack-v2-spec-item span {
-  display: block;
-  font-size: 0.65rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--gold-dark);
-  margin-bottom: 3px;
-}
-
-.pack-v2-spec-item strong {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--dark);
-}
-
-/* Interactive Direct Inquiry B2B Button */
-.pack-v2-card-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 14px 20px;
-  border-radius: 14px;
-  font-family: var(--font-sub);
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--white);
-  background: var(--primary);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: 1px solid transparent;
-}
-
-.pack-v2-card-btn:hover {
-  background: var(--gold);
-  color: var(--dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-gold);
-}
-
-/* Hover lift and card interactions */
-.pack-v2-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--gold);
-  box-shadow: 0 20px 48px rgba(92, 51, 23, 0.1);
-}
-
-.pack-v2-card:hover .pack-v2-image {
-  transform: scale(1.05); /* Gentle zoom effect */
-}
-
-/* 5 KG Bottom Feature Block */
-.packs-v2-5kg-block {
-  border-top: 1px solid rgba(92, 51, 23, 0.12);
-  padding-top: 100px;
-}
-
-.packs-v2-5kg-split {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.packs-v2-5kg-left {
-  display: flex;
-  flex-direction: column;
-}
-
-.packs-v2-badge {
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  font-family: var(--font-sub);
-  font-size: 0.72rem;
-  font-weight: 750;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  padding: 6px 18px;
-  border-radius: 30px;
-  margin-bottom: 24px;
-  background-color: rgba(201, 162, 39, 0.05);
-}
-
-.packs-v2-5kg-desc {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  line-height: 1.85;
-  color: var(--dark-2);
-  margin-bottom: 32px;
-}
-
-/* B2B Export Spec Sheet Grid styling */
-.mazafati-specs-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 36px;
-}
-
-.mazafati-spec-pill {
-  background-color: var(--white);
-  border: 1px solid rgba(92, 51, 23, 0.08);
-  border-radius: 16px;
-  padding: 14px 20px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(92, 51, 23, 0.02);
-}
-
-.mazafati-spec-pill:hover {
-  border-color: var(--gold);
-  box-shadow: 0 8px 24px rgba(201, 162, 39, 0.08);
-}
-
-.mazafati-spec-pill span {
-  display: block;
-  font-size: 0.68rem;
-  font-weight: 750;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--gray);
-  margin-bottom: 4px;
-}
-
-.mazafati-spec-pill strong {
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--primary);
-}
-
-/* Bulk Specs Rows */
-.packs-v2-badge-row {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-top: 1px solid rgba(92, 51, 23, 0.08);
-  padding-top: 32px;
-}
-
-.packs-v2-badge-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.packs-v2-badge-item .gold-icon {
-  color: var(--gold);
-  background-color: var(--primary-light);
-  padding: 10px;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-.packs-v2-badge-item h4 {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--primary);
-  margin-bottom: 4px;
-}
-
-.packs-v2-badge-item p {
-  font-family: var(--font-body);
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--gray);
-}
-
-/* Right-side 3D Packaging Showroom Frame */
-.packs-v2-5kg-right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.pack-v2-5kg-image-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 40px;
-}
-
-/* 3D backlit aura ring */
-.mazafati-backdrop-halo {
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(201, 162, 39, 0.22) 0%, transparent 70%);
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.pack-v2-5kg-image {
-  width: 100%;
-  max-width: 440px;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 20px 48px rgba(92, 51, 23, 0.2));
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 2;
-}
-
-.pack-v2-5kg-image:hover {
-  transform: translateY(-10px) scale(1.03);
-}
-
-/* Responsive adjustment for packs v2 */
-@media (max-width: 1024px) {
-  .packs-v2-1kg-grid {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  .packs-v2-5kg-split {
-    grid-template-columns: 1fr;
-    gap: 64px;
-    text-align: center;
-  }
-
-  .packs-v2-5kg-left {
-    align-items: center;
-  }
-
-  .packs-v2-badge {
-    align-self: center;
-  }
-
-  .packs-v2-badge-item {
-    text-align: left;
-  }
-
-  .mazafati-specs-grid {
-    width: 100%;
-  }
-
-  .packs-v2-badge-row {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .dates-packs-section-v2 {
-    padding: 80px 0;
-  }
-
-  .pack-v2-card-image-wrap {
-    aspect-ratio: 1.35 / 1;
-  }
-
-  .pack-v2-card-content {
-    padding: 24px;
-  }
-
-  .pack-v2-specs-grid {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .mazafati-specs-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-}
-
-/* ---- WHOLESALE SECTION ---- */
-.dates-wholesale-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.dates-wholesale-card {
-  background: linear-gradient(135deg, rgba(201, 162, 39, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid rgba(201, 162, 39, 0.1);
-  border-radius: var(--radius-lg);
-  padding: 36px 24px;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.dates-wholesale-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(201, 162, 39, 0.3);
-}
-
-.dates-wholesale-card__icon {
-  font-size: 2rem;
-  margin-bottom: 16px;
-  display: block;
-}
-
-.dates-wholesale-card h3 {
-  font-family: var(--font-sub);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--white);
+  color: #111827;
   margin-bottom: 8px;
 }
 
-.dates-wholesale-card p {
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.6;
-}
-
-/* ---- GLOBAL IMPORT COUNTRIES ---- */
-.dates-countries-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.dates-country-chip {
-  padding: 10px 24px;
-  border: 1px solid rgba(201, 162, 39, 0.2);
-  border-radius: var(--radius-full);
-  color: rgba(255, 255, 255, 0.8);
-  font-family: var(--font-sub);
+.pack-1kg-card__desc {
   font-size: 0.85rem;
-  font-weight: 500;
-  background: rgba(201, 162, 39, 0.06);
-  transition: var(--transition);
-  cursor: default;
+  color: #6B7280;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex-grow: 1;
 }
 
-.dates-country-chip:hover {
-  background: var(--gold);
-  color: var(--dark);
-  border-color: var(--gold);
+.pack-1kg-card__btn {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 24px;
+  background-color: #10301B;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.pack-1kg-card__btn:hover {
+  background-color: #C9A227;
+  color: #ffffff;
+}
+
+/* Dots */
+.packs-1kg-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.packs-1kg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #E5E7EB;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.packs-1kg-dot.active {
+  background-color: #C9A227;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   5 KG MAZAFATI DATES SECTION
+   ============================================================ */
+.mazafati-section {
+  background-color: #0E2918;
+  padding: 80px 0;
+  color: #ffffff;
+}
+
+.mazafati-full-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.mazafati-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.mazafati-label {
+  font-family: 'Satisfy', 'Georgia', cursive;
+  font-size: 1.8rem;
+  color: #C9A227;
+  margin-bottom: 4px;
+}
+
+.mazafati-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.mazafati-divider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.mazafati-divider__emblem {
+  color: #C9A227;
+  font-size: 1.2rem;
+}
+
+.mazafati-desc {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 36px;
+}
+
+/* Features Grid */
+.mazafati-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 44px;
+}
+
+.mazafati-feature {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.mazafati-feature__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: rgba(201, 162, 39, 0.1);
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #C9A227;
+  flex-shrink: 0;
+}
+
+.mazafati-feature__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.mazafati-feature__text strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.mazafati-feature__text span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Enquire Now Button */
+.mazafati-cta-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 28px;
+  background-color: #C9A227;
+  color: #0E2918;
+  font-weight: 700;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.mazafati-cta-btn:hover {
+  background-color: #e0b730;
+  transform: translateY(-2px);
+}
+
+.mazafati-cta-btn__arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(14, 41, 24, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0E2918;
+}
+
+/* Right Visual */
+.mazafati-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mazafati-visual img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   WHY CHOOSE OUR PREMIUM DATES
+   ============================================================ */
+.why-choose-us-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  color: #ffffff;
+  z-index: 1;
+}
+
+.why-choose-us-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(10, 20, 13, 0.88);
+  z-index: -1;
+}
+
+.why-choose-us-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.why-choose-us-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.why-choose-us-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.why-choose-us-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.why-choose-us-icon-wrap {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1.5px solid #C9A227;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #C9A227;
+  margin-bottom: 24px;
+  background-color: rgba(201, 162, 39, 0.05);
+  transition: all 0.3s ease;
+}
+
+.why-choose-us-item:hover .why-choose-us-icon-wrap {
+  transform: scale(1.1);
+  background-color: rgba(201, 162, 39, 0.15);
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.2);
+}
+
+.why-choose-us-item-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.why-choose-us-item-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
 }
 
 /* ---- INQUIRY CTA ---- */
 .dates-cta-section {
-  background: linear-gradient(135deg, rgba(201, 162, 39, 0.08) 0%, rgba(10, 26, 10, 0.95) 100%);
-  border: 1px solid rgba(201, 162, 39, 0.15);
+  background: var(--primary);
   border-radius: var(--radius-xl);
-  padding: 64px 48px;
+  padding: 56px 44px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -827,134 +881,135 @@
 .dates-cta-section::before {
   content: '';
   position: absolute;
-  top: -100px;
-  right: -100px;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(201, 162, 39, 0.15), transparent 70%);
+  top: -80px;
+  right: -80px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 70%);
   border-radius: 50%;
-  animation: floatSoft 6s ease-in-out infinite;
-}
-
-/* ---- EXPORT SPECS TABLE ---- */
-.export-specs-table {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-}
-
-.export-spec-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  transition: var(--transition);
-}
-
-.export-spec-row:last-child {
-  border-bottom: none;
-}
-
-.export-spec-row:hover {
-  background: rgba(201, 162, 39, 0.05);
-}
-
-.export-spec-label {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 500;
-}
-
-.export-spec-value {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 600;
-}
-
-/* ---- HEALTH BENEFITS ---- */
-.benefit-card {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: 32px 24px;
-  text-align: center;
-  border: 1px solid var(--gray-light);
-  transition: var(--transition);
-}
-
-.benefit-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
-}
-
-.benefit-card__icon {
-  font-size: 2rem;
-  margin-bottom: 16px;
-  display: block;
-}
-
-.benefit-card h3 {
-  font-family: var(--font-sub);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 8px;
-}
-
-.benefit-card p {
-  font-size: 0.82rem;
-  color: var(--gray);
-  line-height: 1.6;
 }
 
 /* ---- RESPONSIVE ---- */
 @media (max-width: 1024px) {
+  .dates-hero__full-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dates-hero__visual {
+    min-height: 340px;
+  }
+
+  .dates-hero__visual::after {
+    background: linear-gradient(
+      to bottom,
+      transparent 40%,
+      rgba(11, 31, 20, 0.7) 70%,
+      #0B1F14 100%
+    );
+  }
+
+  .dates-hero__left {
+    padding: 48px 40px 60px;
+  }
+
   .dates-about {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
 
   .dates-about__visual {
-    height: 340px;
+    height: 320px;
   }
 
   .date-varieties-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 18px;
   }
 
-  .dates-packs-grid {
+  .mazafati-full-layout {
     grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
   }
 
-  .dates-wholesale-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .mazafati-left {
+    align-items: center;
+  }
+
+  .mazafati-features {
+    max-width: 600px;
+  }
+
+  .why-choose-us-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
 }
 
 @media (max-width: 768px) {
+  .dates-hero__title {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+
+  .dates-hero__script {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+  }
+
+  .dates-hero__left {
+    padding: 36px 20px 48px;
+  }
+
+  .dates-hero__visual {
+    min-height: 280px;
+  }
+
+  .dates-hero__badges {
+    flex-direction: column;
+    gap: 20px;
+  }
+
   .dates-hero__stats {
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
 
   .dates-about__features {
     grid-template-columns: 1fr;
   }
 
-  .dates-packaging-showcase {
-    height: 320px;
-  }
-
-  .dates-wholesale-grid {
-    grid-template-columns: 1fr;
-  }
-
   .dates-cta-section {
-    padding: 40px 24px;
+    padding: 36px 22px;
   }
 
   .date-varieties-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .packs-1kg-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .packs-1kg-nav {
+    align-self: flex-end;
+  }
+
+  .mazafati-features {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-self: center;
+  }
+
+  .why-choose-us-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-choose-us-grid {
     grid-template-columns: 1fr;
     gap: 24px;
   }

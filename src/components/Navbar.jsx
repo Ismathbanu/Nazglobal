@@ -38,10 +38,10 @@ export default function Navbar() {
         <Link to="/" className="navbar__logo">
           <div className="navbar__logo-icon">
             <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="20" cy="20" r="20" fill="#5C3317" />
-              <path d="M20 8C20 8 12 14 12 22C12 26.4 15.6 30 20 30C24.4 30 28 26.4 28 22C28 14 20 8 20 8Z" fill="#C9A227" />
-              <path d="M20 12C20 12 15 16.5 15 22C15 24.8 17.2 27 20 27C22.8 27 25 24.8 25 22C25 16.5 20 12 20 12Z" fill="#F5EDE3" />
-              <circle cx="20" cy="22" r="3" fill="#5C3317" />
+              <circle cx="20" cy="20" r="20" fill="var(--primary)" />
+              <path d="M20 8C20 8 12 14 12 22C12 26.4 15.6 30 20 30C24.4 30 28 26.4 28 22C28 14 20 8 20 8Z" fill="var(--gold)" />
+              <path d="M20 12C20 12 15 16.5 15 22C15 24.8 17.2 27 20 27C22.8 27 25 24.8 25 22C25 16.5 20 12 20 12Z" fill="var(--primary-light)" />
+              <circle cx="20" cy="22" r="3" fill="var(--primary)" />
             </svg>
           </div>
           <div className="navbar__logo-text">
@@ -65,6 +65,7 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="navbar__actions">
+          <Link to="/contact" className="navbar__cta-btn">Request Quote</Link>
           <button
             className="navbar__hamburger"
             onClick={() => setMenuOpen(v => !v)}

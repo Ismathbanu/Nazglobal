@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Target, Eye, Heart, Globe, Award, Users, CheckCircle, Leaf, Handshake, Sparkles, Zap, Lightbulb } from 'lucide-react'
+import { ArrowRight, Target, Eye, Heart, Globe, Award, Users, CheckCircle, Leaf, Handshake, Sparkles, Zap, Lightbulb, Diamond, Building2, Truck, ShoppingBasket } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import ScrollReveal from '../components/ScrollReveal'
 import aboutTeam from '../assets/about_team.png'
@@ -15,16 +15,7 @@ const values = [
   { icon: Lightbulb, title: 'Innovation', desc: 'Continuously improving packaging, logistics, and product range.' },
 ]
 
-const whyUs = [
-  'Direct sourcing from certified Indian farms',
-  'Custom private labelling with brand protection',
-  'FSSAI, ISO 22000, APEDA, and Halal certified',
-  'End-to-end export documentation support',
-  'Competitive bulk pricing with flexible MOQs',
-  'Dedicated account managers for every client',
-  'Multi-lingual support (English, Arabic, Malay, Malayalam)',
-  'Cold-chain logistics for perishable products',
-]
+
 
 const timeline = [
   { year: '2012', title: 'Founded in Kerala', desc: 'Started as a domestic spice trading business in Calicut, Kerala.' },
@@ -45,23 +36,54 @@ const team = [
 export default function AboutPage() {
   return (
     <PageTransition>
-      {/* Hero */}
-      <section className="page-hero about-hero">
-        <div className="page-hero-overlay" style={{ background: 'var(--grad-hero)' }} />
-        <div className="about-hero__img">
-          <img src={aboutTeam} alt="NAZ Global Team" className="img-cover" />
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(30, 15, 5, 0.6)' }} />
-        </div>
-        <div className="container page-hero-content">
-          <ScrollReveal>
-            <span className="section-label">Our Story</span>
-            <h1 className="section-title" style={{ color: '#fff', fontSize: 'clamp(2rem,5vw,3.5rem)' }}>
-              Rooted in India,<br /><span style={{ color: '#C9A227' }}>Reaching the World</span>
+      {/* ===== ABOUT HERO ===== */}
+      <section className="about-page-hero">
+        <div className="about-page-hero__container">
+          <ScrollReveal className="about-page-hero__text">
+            <span className="about-page-hero__script">About Us</span>
+            <h1 className="about-page-hero__title">
+              Delivering Purity,<br />
+              Quality & <span>Trust</span>
             </h1>
-            <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.8)', marginBottom: 32 }}>
-              A decade of trust, quality, and global food trade excellence from Kerala to the world.
+            <p className="about-page-hero__desc">
+              NAZ Global Ventures Pvt Ltd is a leading export-import and general trading company from India, delivering premium quality food products to global markets with integrity and excellence.
             </p>
-            <Link to="/contact" className="btn btn-gold btn-lg">Connect With Us <ArrowRight size={18} /></Link>
+            
+            <div className="about-page-hero__trust">
+              <div className="about-page-hero__trust-item">
+                <div className="about-page-hero__trust-icon">
+                  <Leaf size={16} strokeWidth={2.5} />
+                </div>
+                <div className="about-page-hero__trust-text">
+                  <h4>Premium Quality</h4>
+                  <p>Products</p>
+                </div>
+              </div>
+
+              <div className="about-page-hero__trust-item">
+                <div className="about-page-hero__trust-icon">
+                  <Globe size={16} strokeWidth={2.5} />
+                </div>
+                <div className="about-page-hero__trust-text">
+                  <h4>Global Reach</h4>
+                  <p>Trusted Worldwide</p>
+                </div>
+              </div>
+
+              <div className="about-page-hero__trust-item">
+                <div className="about-page-hero__trust-icon">
+                  <Handshake size={16} strokeWidth={2.5} />
+                </div>
+                <div className="about-page-hero__trust-text">
+                  <h4>Ethical Business</h4>
+                  <p>Long Term Partnership</p>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal className="about-page-hero__visual" delay={0.2}>
+            <img src={aboutTeam} alt="NAZ Global Products & Facility Widescreen" />
           </ScrollReveal>
         </div>
       </section>
@@ -115,24 +137,31 @@ export default function AboutPage() {
           </ScrollReveal>
           <div className="mv-grid">
             <ScrollReveal delay={0.1}>
-              <div className="mv-card mv-card--mission">
-                <div className="mv-card__icon"><Target size={28} /></div>
+              <div className="mv-card">
+                <div className="mv-card__icon"><Leaf size={28} /></div>
                 <h3>Our Mission</h3>
-                <p>To be the most trusted international food export partner — delivering premium quality products from India to global markets with transparency, reliability, and excellence at every step of the supply chain.</p>
+                <p>To provide premium quality food products with reliable supply, fair practices and world class service.</p>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
-              <div className="mv-card mv-card--vision">
+              <div className="mv-card">
                 <div className="mv-card__icon"><Eye size={28} /></div>
                 <h3>Our Vision</h3>
-                <p>To become India's leading premium food export brand — recognized globally for quality, innovation, and sustainable sourcing — creating prosperity for farmers, partners, and communities alike.</p>
+                <p>To be a globally recognized export brand known for quality, trust and long-term relationships.</p>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
-              <div className="mv-card mv-card--values">
-                <div className="mv-card__icon"><Heart size={28} /></div>
-                <h3>Our Promise</h3>
-                <p>Every product that leaves our warehouse carries a promise — of quality tested to international standards, of ethical sourcing from verified farms, and of delivery you can count on.</p>
+              <div className="mv-card mv-card--values-list">
+                <div className="mv-card__icon"><Diamond size={28} /></div>
+                <h3>Our Values</h3>
+                <div className="mv-card__list-wrapper">
+                  <ul>
+                    <li>Integrity & Transparency</li>
+                    <li>Quality & Excellence</li>
+                    <li>Customer Satisfaction</li>
+                    <li>Sustainable Growth</li>
+                  </ul>
+                </div>
               </div>
             </ScrollReveal>
           </div>
@@ -170,27 +199,76 @@ export default function AboutPage() {
         <div className="container">
           <div className="why-split">
             <ScrollReveal className="why-split__img">
-              <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', height: 500 }}>
+              <div className="why-split__image-container">
                 <img src={exportImg} alt="Export Operations" className="img-cover" />
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.2} className="why-split__content">
-              <span className="section-label">Why NAZ Global</span>
-              <h2 className="section-title">Why Leading Importers <span>Choose Us</span></h2>
-              <p className="section-subtitle" style={{ marginBottom: 32 }}>
-                We don't just supply products — we supply peace of mind.
-              </p>
-              <div className="why-list">
-                {whyUs.map(w => (
-                  <div key={w} className="why-item">
-                    <CheckCircle size={18} color="var(--primary)" />
-                    <span>{w}</span>
+              <span className="section-label section-label--left">WHY CHOOSE US?</span>
+              <h2 className="section-title section-title--left">Your Trusted Partner In Global Food Trade</h2>
+              <div className="title-underline"></div>
+              
+              <div className="why-features-grid">
+                <div className="why-feature-item">
+                  <div className="why-feature-icon">
+                    <Building2 size={32} strokeWidth={1.5} />
                   </div>
-                ))}
+                  <div className="why-feature-text">
+                    <h3>Advanced Infrastructure</h3>
+                    <p>State-of-the-art facilities for processing and packaging.</p>
+                  </div>
+                </div>
+
+                <div className="why-feature-item">
+                  <div className="why-feature-icon">
+                    <ShoppingBasket size={32} strokeWidth={1.5} />
+                  </div>
+                  <div className="why-feature-text">
+                    <h3>Wide Product Range</h3>
+                    <p>A diverse range of food products catering to global needs.</p>
+                  </div>
+                </div>
+
+                <div className="why-feature-item">
+                  <div className="why-feature-icon">
+                    <Award size={32} strokeWidth={1.5} />
+                  </div>
+                  <div className="why-feature-text">
+                    <h3>Quality Assurance</h3>
+                    <p>Strict quality control to ensure the best reaches you.</p>
+                  </div>
+                </div>
+
+                <div className="why-feature-item">
+                  <div className="why-feature-icon">
+                    <Users size={32} strokeWidth={1.5} />
+                  </div>
+                  <div className="why-feature-text">
+                    <h3>Customer First Approach</h3>
+                    <p>We prioritize our customers and build lasting relationships.</p>
+                  </div>
+                </div>
+
+                <div className="why-feature-item">
+                  <div className="why-feature-icon">
+                    <Truck size={32} strokeWidth={1.5} />
+                  </div>
+                  <div className="why-feature-text">
+                    <h3>Timely Delivery</h3>
+                    <p>On-time delivery with efficient logistics support.</p>
+                  </div>
+                </div>
+
+                <div className="why-feature-item">
+                  <div className="why-feature-icon">
+                    <Leaf size={32} strokeWidth={1.5} />
+                  </div>
+                  <div className="why-feature-text">
+                    <h3>Ethical & Sustainable</h3>
+                    <p>We follow ethical business practices and support sustainability.</p>
+                  </div>
+                </div>
               </div>
-              <Link to="/contact" className="btn btn-primary" style={{ marginTop: 32 }}>
-                Get Started <ArrowRight size={16} />
-              </Link>
             </ScrollReveal>
           </div>
         </div>
@@ -224,7 +302,7 @@ export default function AboutPage() {
           <ScrollReveal>
             <Globe size={48} color="rgba(255,255,255,0.3)" style={{ margin: '0 auto 24px' }} />
             <h2 className="section-title" style={{ color: '#fff', margin: '0 auto 16px', maxWidth: 600 }}>
-              Ready to Partner With <span style={{ color: '#C9A227' }}>NAZ Global?</span>
+              Ready to Partner With <span style={{ color: 'var(--gold)' }}>NAZ Global?</span>
             </h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', marginBottom: 36, maxWidth: 480, margin: '0 auto 36px' }}>
               Join 500+ satisfied importers and distributors who trust NAZ Global Ventures.

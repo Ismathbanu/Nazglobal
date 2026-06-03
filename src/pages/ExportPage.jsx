@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Ship, FileText, Package, CheckCircle, Truck, Shield, Globe, MapPin } from 'lucide-react'
+import { ArrowRight, Ship, FileText, Package, CheckCircle, Truck, Shield, Globe, MapPin, Wheat, Factory } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import ScrollReveal from '../components/ScrollReveal'
 import exportContainer from '../assets/export_container.png'
-import exportWarehouse from '../assets/export_warehouse.png'
 import './ExportPage.css'
 
 const exportCountries = [
@@ -46,24 +45,53 @@ export default function ExportPage() {
   return (
     <PageTransition>
       {/* ===== HERO ===== */}
-      <section className="export-hero">
-        <div className="export-hero__bg">
-          <img src={exportContainer} alt="Global Export" className="img-cover" />
-          <div className="export-hero__overlay" />
-        </div>
-        <div className="container export-hero__content">
-          <ScrollReveal>
-            <span className="section-label" style={{ color: '#C9A227' }}>Global Operations</span>
-            <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.2rem,5.5vw,4rem)', fontWeight: 800, color: '#fff', lineHeight: 1.12, marginBottom: 20, letterSpacing: '-0.02em' }}>
-              From India's Farms to<br /><span style={{ color: '#C9A227' }}>World's Tables</span>
+      <section className="export-page-hero">
+        <div className="export-page-hero__container">
+          <ScrollReveal className="export-page-hero__text">
+            <span className="export-page-hero__script">Global Operations</span>
+            <h1 className="export-page-hero__title">
+              From India's Farms<br />
+              to <span>World's Tables</span>
             </h1>
-            <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem', lineHeight: 1.75, marginBottom: 36, maxWidth: 560 }}>
+            <p className="export-page-hero__desc">
               Reliable end-to-end export operations spanning sea freight, air cargo, and multimodal logistics to 25+ countries worldwide.
             </p>
-            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-              <Link to="/contact" className="btn btn-gold btn-lg">Get Export Quote <ArrowRight size={18} /></Link>
-              <a href="#network" className="btn btn-outline btn-lg">View Network</a>
+
+            <div className="export-page-hero__trust">
+              <div className="export-page-hero__trust-item">
+                <div className="export-page-hero__trust-icon">
+                  <Ship size={16} strokeWidth={2.5} />
+                </div>
+                <div className="export-page-hero__trust-text">
+                  <h4>Sea &amp; Air Freight</h4>
+                  <p>Flexible Shipping Routes</p>
+                </div>
+              </div>
+
+              <div className="export-page-hero__trust-item">
+                <div className="export-page-hero__trust-icon">
+                  <Globe size={16} strokeWidth={2.5} />
+                </div>
+                <div className="export-page-hero__trust-text">
+                  <h4>Global Network</h4>
+                  <p>Spanning 25+ Countries</p>
+                </div>
+              </div>
+
+              <div className="export-page-hero__trust-item">
+                <div className="export-page-hero__trust-icon">
+                  <FileText size={16} strokeWidth={2.5} />
+                </div>
+                <div className="export-page-hero__trust-text">
+                  <h4>Clear Documentation</h4>
+                  <p>Complete Compliance</p>
+                </div>
+              </div>
             </div>
+          </ScrollReveal>
+
+          <ScrollReveal className="export-page-hero__visual" delay={0.2}>
+            <img src={exportContainer} alt="NAZ Global Export Logistics" />
           </ScrollReveal>
         </div>
       </section>
@@ -146,89 +174,7 @@ export default function ExportPage() {
         </div>
       </section>
 
-      {/* ===== CONTAINER LOGISTICS SPLIT ===== */}
-      <section className="section section-white">
-        <div className="container">
-          <div className="export-visual-split">
-            <ScrollReveal>
-              <span className="section-label">Container Logistics</span>
-              <h2 className="section-title">Professional <span>Container Shipping</span></h2>
-              <p style={{ color: 'var(--gray)', lineHeight: 1.85, marginBottom: 8 }}>
-                We handle full container load (FCL) and less-than-container load (LCL) shipments across all major trade routes. Our logistics team ensures proper container stuffing, fumigation, and seal protocols.
-              </p>
-              <div className="export-features-list">
-                {[
-                  '20ft and 40ft container options',
-                  'Reefer containers for perishables',
-                  'Professional fumigation & sealing',
-                  'Multi-port shipping routes',
-                  'Competitive freight rates',
-                ].map(f => (
-                  <div key={f} className="export-feature-item">
-                    <CheckCircle size={16} />
-                    <span>{f}</span>
-                  </div>
-                ))}
-              </div>
-              <Link to="/contact" className="btn btn-primary">Get Shipping Quote <ArrowRight size={16} /></Link>
-            </ScrollReveal>
-            <ScrollReveal delay={0.2}>
-              <div className="export-visual-wrap">
-                <img src={exportContainer} alt="Container Shipping" />
-                <div className="export-visual-badge">
-                  <Ship size={18} style={{ color: 'var(--primary)' }} />
-                  <div>
-                    <strong>FCL & LCL</strong>
-                    <span>Container Options</span>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
 
-      {/* ===== WAREHOUSE OPERATIONS SPLIT (REVERSED) ===== */}
-      <section className="section section-cream">
-        <div className="container">
-          <div className="export-visual-split export-visual-split--reverse">
-            <ScrollReveal>
-              <div className="export-visual-wrap">
-                <img src={exportWarehouse} alt="Warehouse Operations" />
-                <div className="export-visual-badge">
-                  <Package size={18} style={{ color: 'var(--primary)' }} />
-                  <div>
-                    <strong>FSSAI Certified</strong>
-                    <span>Processing Facility</span>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.2}>
-              <span className="section-label">Operations</span>
-              <h2 className="section-title">Warehouse <span>Operations</span></h2>
-              <p style={{ color: 'var(--gray)', lineHeight: 1.85, marginBottom: 8 }}>
-                Our FSSAI-certified warehouse and processing facility handles cleaning, grading, packaging, and quality inspection — all under one roof with strict hygiene protocols.
-              </p>
-              <div className="export-features-list">
-                {[
-                  'Climate-controlled storage',
-                  'Automated cleaning & grading',
-                  'Professional packaging lines',
-                  'Quality lab for testing',
-                  'Pest-free environment maintained',
-                ].map(f => (
-                  <div key={f} className="export-feature-item">
-                    <CheckCircle size={16} />
-                    <span>{f}</span>
-                  </div>
-                ))}
-              </div>
-              <Link to="/contact" className="btn btn-primary">Schedule a Visit <ArrowRight size={16} /></Link>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
 
       {/* ===== SHIPPING PROCESS ===== */}
       <section className="section section-white">
@@ -255,85 +201,7 @@ export default function ExportPage() {
         </div>
       </section>
 
-      {/* ===== PACKAGING STANDARDS ===== */}
-      <section className="section section-dark">
-        <div className="container">
-          <ScrollReveal style={{ textAlign: 'center', marginBottom: 48 }}>
-            <span className="section-label" style={{ color: '#C9A227' }}>Quality Assurance</span>
-            <h2 className="section-title" style={{ color: '#fff' }}>
-              Packaging <span style={{ color: '#C9A227' }}>Standards</span>
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal>
-            <div className="packaging-grid">
-              {[
-                { icon: '📦', title: 'Export Cartons', desc: '5-ply corrugated cartons with moisture barriers' },
-                { icon: '🎒', title: 'Retail Packs', desc: 'Branded pouches, jars, and tins for shelves' },
-                { icon: '🏗️', title: 'Bulk Packaging', desc: 'PP bags, HDPE drums, and jumbo sacks' },
-                { icon: '❄️', title: 'Cold Chain', desc: 'Temperature-controlled packing for perishables' },
-                { icon: '🏷️', title: 'Custom Labels', desc: 'Multi-language labels meeting import requirements' },
-                { icon: '🔒', title: 'Tamper Proof', desc: 'Sealed packaging with batch traceability' },
-                { icon: '♻️', title: 'Eco-Friendly', desc: 'Recyclable and biodegradable options available' },
-                { icon: '📋', title: 'Compliance', desc: 'Meets FDA, EU, and GCC import standards' },
-              ].map((p, i) => (
-                <div key={p.title} className="packaging-card">
-                  <span className="packaging-card__icon">{p.icon}</span>
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
 
-      {/* ===== DOCUMENTATION SUPPORT ===== */}
-      <section className="section section-white">
-        <div className="container">
-          <div className="export-visual-split">
-            <ScrollReveal>
-              <span className="section-label">Hassle-Free</span>
-              <h2 className="section-title">Documentation <span>Support</span></h2>
-              <p style={{ color: 'var(--gray)', lineHeight: 1.85, marginBottom: 8 }}>
-                We handle all the paperwork so you can focus on your business. Our documentation team prepares every required certificate and clearance document for smooth customs processing.
-              </p>
-              <div className="export-features-list">
-                {[
-                  'Commercial invoice & packing list',
-                  'Certificate of origin (COO)',
-                  'Certificate of analysis (COA)',
-                  'Phytosanitary certificate',
-                  'Halal certification',
-                  'Bill of lading / Airway bill',
-                  'Insurance certificate',
-                  'Customs clearance support',
-                ].map(f => (
-                  <div key={f} className="export-feature-item">
-                    <CheckCircle size={16} />
-                    <span>{f}</span>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.15}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                {[
-                  { val: '100%', lbl: 'Documentation Success', icon: '📋' },
-                  { val: '24hrs', lbl: 'Response Time', icon: '⚡' },
-                  { val: '25+', lbl: 'Countries Served', icon: '🌍' },
-                  { val: '0%', lbl: 'Shipment Rejection', icon: '✅' },
-                ].map(s => (
-                  <div key={s.lbl} style={{ background: 'var(--cream)', borderRadius: 'var(--radius-lg)', padding: '28px 20px', textAlign: 'center', border: '1px solid var(--gray-light)' }}>
-                    <div style={{ fontSize: '1.8rem', marginBottom: 8 }}>{s.icon}</div>
-                    <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--primary)', marginBottom: 4 }}>{s.val}</div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--gray)', fontWeight: 500 }}>{s.lbl}</div>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
 
       {/* ===== CERTIFICATIONS ===== */}
       <section className="section section-light">
@@ -361,23 +229,28 @@ export default function ExportPage() {
         <div className="container">
           <ScrollReveal>
             <h2 className="section-title" style={{ color: '#fff', marginBottom: 48 }}>
-              Our <span style={{ color: '#C9A227' }}>Supply Chain</span> Capabilities
+              Our <span style={{ color: 'var(--gold)' }}>Supply Chain</span> Capabilities
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
               {[
-                { icon: '🏭', title: 'Verified Farms', desc: 'Direct partnerships with 200+ certified farms across India' },
-                { icon: '🏪', title: 'Processing Units', desc: 'In-house cleaning, grading, and packaging facilities' },
-                { icon: '🚢', title: 'Freight Partners', desc: 'Global sea & air freight network with competitive rates' },
-                { icon: '📋', title: 'Documentation', desc: 'Full export clearance and compliance support' },
-              ].map((s, i) => (
-                <ScrollReveal key={s.title} delay={i * 0.1}>
-                  <div className="supply-card card-glass">
-                    <div style={{ fontSize: '2.4rem', marginBottom: 16 }}>{s.icon}</div>
-                    <h3 style={{ fontFamily: 'var(--font-sub)', fontSize: '1rem', fontWeight: 700, color: '#fff', marginBottom: 8 }}>{s.title}</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>{s.desc}</p>
-                  </div>
-                </ScrollReveal>
-              ))}
+                { icon: Wheat, title: 'Verified Farms', desc: 'Direct partnerships with 200+ certified farms across India' },
+                { icon: Factory, title: 'Processing Units', desc: 'In-house cleaning, grading, and packaging facilities' },
+                { icon: Ship, title: 'Freight Partners', desc: 'Global sea & air freight network with competitive rates' },
+                { icon: FileText, title: 'Documentation', desc: 'Full export clearance and compliance support' },
+              ].map((s, i) => {
+                const IconComponent = s.icon;
+                return (
+                  <ScrollReveal key={s.title} delay={i * 0.1}>
+                    <div className="supply-card card-glass">
+                      <div className="supply-card__icon">
+                        <IconComponent size={26} strokeWidth={1.8} />
+                      </div>
+                      <h3 style={{ fontFamily: 'var(--font-sub)', fontSize: '1rem', fontWeight: 700, color: '#fff', marginBottom: 8 }}>{s.title}</h3>
+                      <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>{s.desc}</p>
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
             </div>
             <div style={{ marginTop: 48 }}>
               <Link to="/contact" className="btn btn-gold btn-lg">Start Your Export Enquiry <ArrowRight size={18} /></Link>

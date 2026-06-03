@@ -1,5 +1,6 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Star, Package, Globe, Truck, CheckCircle, Shield, Award } from 'lucide-react'
+import { ArrowRight, Star, Package, Globe, Truck, CheckCircle, Shield, Award, Leaf, ShieldCheck, Sprout } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import ScrollReveal from '../components/ScrollReveal'
 import datesLuxury from '../assets/dates_luxury.png'
@@ -13,6 +14,9 @@ import packSagai from '../assets/dates_pack_2.png'
 import packMabroom from '../assets/dates_pack_3.png'
 import packAjwa from '../assets/dates_pack_4.png'
 import packMazafati from '../assets/dates_pack_5.png'
+import packSukkari from '../assets/sukkari_dates_box.png'
+import mazafatiBox from '../assets/mazafati_dates_box.png'
+import whyChooseUsBg from '../assets/why_choose_us_bg.png'
 import './DatesPage.css'
 
 const dateVarieties = [
@@ -90,28 +94,63 @@ const exportSpecs = [
 ]
 
 export default function DatesPage() {
+  const carouselRef = useRef(null)
+
+  const scroll = (direction) => {
+    if (carouselRef.current) {
+      const { scrollLeft, clientWidth } = carouselRef.current
+      const scrollTo = direction === 'left' 
+        ? scrollLeft - clientWidth * 0.8
+        : scrollLeft + clientWidth * 0.8
+      carouselRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' })
+    }
+  }
+
   return (
     <PageTransition>
       {/* ===== CINEMATIC HERO ===== */}
       <section className="dates-hero">
-        <div className="dates-hero__bg">
-          <img src={datesLuxury} alt="Premium Dates" className="img-cover" />
-          <div className="dates-hero__overlay" />
-        </div>
-        <div className="container dates-hero__content">
-          <ScrollReveal>
-            <span className="section-label" style={{ color: '#C9A227' }}>Our Specialty Product</span>
-            <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.4rem,6vw,4.5rem)', fontWeight: 800, color: '#fff', lineHeight: 1.1, marginBottom: 20, letterSpacing: '-0.02em' }}>
-              The World's Finest<br /><span style={{ color: '#C9A227' }}>Premium Dates</span>
-            </h1>
-            <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem', lineHeight: 1.75, marginBottom: 36, maxWidth: 560 }}>
-              Direct sourced from Saudi Arabian farms. Curated for discerning buyers, premium retailers, and gift market specialists across the globe.
+        <div className="dates-hero__full-layout">
+          {/* Left — text content */}
+          <ScrollReveal className="dates-hero__left">
+            <span className="dates-hero__script">Premium</span>
+            <h1 className="dates-hero__title">DATES</h1>
+            <p className="dates-hero__desc">
+              Indulge in the finest quality, naturally sweet and nutritious dates sourced from the best farms and packed with care.
             </p>
-            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-              <Link to="/contact" className="btn btn-gold btn-lg">Request Samples <ArrowRight size={18} /></Link>
-              <a href="#varieties" className="btn btn-outline btn-lg">Explore Varieties</a>
+            <div className="dates-hero__badges">
+              <div className="dates-hero__badge-item">
+                <div className="dates-hero__badge-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                    <path d="M9 12l2 2 4-4"/>
+                  </svg>
+                </div>
+                <div className="dates-hero__badge-text">
+                  <strong>100% Natural</strong>
+                  <span>& Premium Quality</span>
+                </div>
+              </div>
+              <div className="dates-hero__badge-item">
+                <div className="dates-hero__badge-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                  </svg>
+                </div>
+                <div className="dates-hero__badge-text">
+                  <strong>Carefully Packed</strong>
+                  <span>for Freshness</span>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
+
+          {/* Right — full-bleed product image */}
+          <div className="dates-hero__visual">
+            <img src={datesPackaging} alt="NAZ Premium Dates Packaging" />
+          </div>
         </div>
       </section>
 
@@ -125,9 +164,9 @@ export default function DatesPage() {
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
-              <span className="section-label" style={{ color: '#C9A227' }}>About Our Dates</span>
+              <span className="section-label" style={{ color: 'var(--gold)' }}>About Our Dates</span>
               <h2 className="section-title" style={{ color: '#fff' }}>
-                Farm Fresh, <span style={{ color: '#C9A227' }}>Premium Quality</span>
+                Farm Fresh, <span style={{ color: 'var(--gold)' }}>Premium Quality</span>
               </h2>
               <p className="dates-about__text">
                 Our premium dates are sourced directly from the finest orchards in Saudi Arabia's Al-Qassim and Madinah regions. Each variety is hand-selected, carefully graded, and packed under strict quality control to preserve the natural sweetness, moisture, and nutritional integrity.
@@ -221,312 +260,170 @@ export default function DatesPage() {
         </div>
       </section>
 
-      {/* ===== PREMIUM PACKS ===== */}
-      <section className="dates-packs-section-v2">
+      {/* ===== 1 KG PREMIUM PACKS ===== */}
+      <section className="packs-1kg-section">
         <div className="container">
-          {/* 1 KG Section */}
-          <div className="packs-v2-1kg-block">
-            <ScrollReveal style={{ textAlign: 'center', marginBottom: 56 }}>
-              <span className="section-label" style={{ color: 'var(--gold)', display: 'block', marginBottom: 12 }}>Premium Retail Offerings</span>
-              <h2 className="packs-v2-section-title">Our 1 Kg Premium Packs</h2>
-              <p className="packs-v2-section-desc">
-                Perfect for elite retailers, high-end supermarkets, and corporate gifting. Sourced from certified premium orchards, carefully selected, washed, and packed in luxury 1 KG boxes for ultimate freshness and visual prestige.
-              </p>
+          <div className="packs-1kg-header">
+            <ScrollReveal className="packs-1kg-header__left">
+              <span className="packs-1kg-label">Our 1 KG Premium Packs</span>
+              <h2 className="packs-1kg-title">Premium Dates Varieties</h2>
+              <div className="packs-1kg-emblem">
+                <span className="packs-1kg-emblem-star">✦</span>
+              </div>
             </ScrollReveal>
-
-            <div className="packs-v2-1kg-grid">
-              <ScrollReveal delay={0.1}>
-                <div className="pack-v2-card">
-                  <div className="pack-v2-card-image-wrap">
-                    <span className="pack-v2-badge-tag">Midnight Pearl</span>
-                    <img src={packSafawi} alt="Safawi Dates 1 Kg" className="pack-v2-image" />
-                  </div>
-                  <div className="pack-v2-card-content">
-                    <h3 className="pack-v2-card-name">Safawi Dates (1 KG)</h3>
-                    <p className="pack-v2-card-text">
-                      Sought-after for their deep dark color and soft texture. Naturally sweet and nutrient-dense dates with an exquisite chew.
-                    </p>
-                    <div className="pack-v2-specs-grid">
-                      <div className="pack-v2-spec-item">
-                        <span>Origin</span>
-                        <strong>Madinah, KSA</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Taste Profile</span>
-                        <strong>Caramel Sweet</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Moisture</span>
-                        <strong>15% - 18%</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Texture</span>
-                        <strong>Soft & Chewy</strong>
-                      </div>
-                    </div>
-                    <Link to="/contact" className="pack-v2-card-btn">
-                      Inquire for 1kg Pack <ArrowRight size={16} />
-                    </Link>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.2}>
-                <div className="pack-v2-card">
-                  <div className="pack-v2-card-image-wrap">
-                    <span className="pack-v2-badge-tag">Desert Gold</span>
-                    <img src={packSagai} alt="Sagai Dates 1 Kg" className="pack-v2-image" />
-                  </div>
-                  <div className="pack-v2-card-content">
-                    <h3 className="pack-v2-card-name">Sagai Dates (1 KG)</h3>
-                    <p className="pack-v2-card-text">
-                      Premium two-tone dates characterized by their dry golden tip and moist, soft amber-colored body.
-                    </p>
-                    <div className="pack-v2-specs-grid">
-                      <div className="pack-v2-spec-item">
-                        <span>Origin</span>
-                        <strong>Al-Qassim, KSA</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Taste Profile</span>
-                        <strong>Mildly Sweet</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Moisture</span>
-                        <strong>12% - 14%</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Texture</span>
-                        <strong>Crispy & Soft</strong>
-                      </div>
-                    </div>
-                    <Link to="/contact" className="pack-v2-card-btn">
-                      Inquire for 1kg Pack <ArrowRight size={16} />
-                    </Link>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.3}>
-                <div className="pack-v2-card">
-                  <div className="pack-v2-card-image-wrap">
-                    <span className="pack-v2-badge-tag">Royal Selection</span>
-                    <img src={packMabroom} alt="Mabroom Dates 1 Kg" className="pack-v2-image" />
-                  </div>
-                  <div className="pack-v2-card-content">
-                    <h3 className="pack-v2-card-name">Mabroom Dates (1 KG)</h3>
-                    <p className="pack-v2-card-text">
-                      Slender, premium long dates with a beautiful reddish-brown skin and a rich, authentic toffee-like tone.
-                    </p>
-                    <div className="pack-v2-specs-grid">
-                      <div className="pack-v2-spec-item">
-                        <span>Origin</span>
-                        <strong>Madinah, KSA</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Taste Profile</span>
-                        <strong>Rich Toffee</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Moisture</span>
-                        <strong>13% - 15%</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Texture</span>
-                        <strong>Firm & Chewy</strong>
-                      </div>
-                    </div>
-                    <Link to="/contact" className="pack-v2-card-btn">
-                      Inquire for 1kg Pack <ArrowRight size={16} />
-                    </Link>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.4}>
-                <div className="pack-v2-card">
-                  <div className="pack-v2-card-image-wrap">
-                    <span className="pack-v2-badge-tag">Blessed Fruit</span>
-                    <img src={packAjwa} alt="Ajwa Dates 1 Kg" className="pack-v2-image" />
-                  </div>
-                  <div className="pack-v2-card-content">
-                    <h3 className="pack-v2-card-name">Ajwa Dates (1 KG)</h3>
-                    <p className="pack-v2-card-text">
-                      Revered black round dates packed with high nutritional value, presenting a soft, smooth, honey-like taste.
-                    </p>
-                    <div className="pack-v2-specs-grid">
-                      <div className="pack-v2-spec-item">
-                        <span>Origin</span>
-                        <strong>Madinah, KSA</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Taste Profile</span>
-                        <strong>Honey & Herbal</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Moisture</span>
-                        <strong>16% - 19%</strong>
-                      </div>
-                      <div className="pack-v2-spec-item">
-                        <span>Texture</span>
-                        <strong>Tender & Soft</strong>
-                      </div>
-                    </div>
-                    <Link to="/contact" className="pack-v2-card-btn">
-                      Inquire for 1kg Pack <ArrowRight size={16} />
-                    </Link>
-                  </div>
-                </div>
-              </ScrollReveal>
+            <div className="packs-1kg-nav">
+              <button className="packs-1kg-nav-btn" onClick={() => scroll('left')} aria-label="Previous page">
+                ‹
+              </button>
+              <button className="packs-1kg-nav-btn" onClick={() => scroll('right')} aria-label="Next page">
+                ›
+              </button>
             </div>
           </div>
 
-          {/* 5 KG Bottom Feature Section */}
-          <div className="packs-v2-5kg-block">
-            <div className="packs-v2-5kg-split">
-              {/* Left Side */}
-              <div className="packs-v2-5kg-left">
-                <ScrollReveal>
-                  <span className="packs-v2-badge">👑 Bulk Royal Selection</span>
-                  <h2 className="packs-v2-section-title">Our 5 KG Mazafati Dates</h2>
-                  <p className="packs-v2-5kg-desc">
-                    Experience the ultimate luxury of our Premium 5 KG Mazafati Dates. Hand-harvested at peak freshness, these dates are globally distinguished by their dark black color, high moisture content, and exceptionally juicy caramel flesh. Sourced directly from our partner farms, they are shipped in specialized B2B export cartons to maintain their perfect temperature and texture.
-                  </p>
-
-                  {/* B2B Export Spec Sheet Grid */}
-                  <div className="mazafati-specs-grid">
-                    <div className="mazafati-spec-pill">
-                      <span>Moisture Range</span>
-                      <strong>18% - 22% (Moist/Fresh)</strong>
-                    </div>
-                    <div className="mazafati-spec-pill">
-                      <span>Storage Temp</span>
-                      <strong>0°C to 5°C (Refrigerated)</strong>
-                    </div>
-                    <div className="mazafati-spec-pill">
-                      <span>Export Shelf Life</span>
-                      <strong>18 Months (Stored)</strong>
-                    </div>
-                    <div className="mazafati-spec-pill">
-                      <span>Monthly Supply</span>
-                      <strong>50+ Metric Tons</strong>
-                    </div>
-                  </div>
-
-                  <div className="packs-v2-badge-row">
-                    <div className="packs-v2-badge-item">
-                      <Award size={18} className="gold-icon" />
-                      <div>
-                        <h4>Certified Export Grade</h4>
-                        <p>Fully certified with Halal, ISO 22000, and comprehensive customs compliance documentation.</p>
-                      </div>
-                    </div>
-                    <div className="packs-v2-badge-item">
-                      <Globe size={18} className="gold-icon" />
-                      <div>
-                        <h4>Custom Packaging & Private Label</h4>
-                        <p>Available with tailored brand sleeves, gold foil printing, and B2B distributor-specific dimensions.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: 16, marginTop: 36, flexWrap: 'wrap' }}>
-                    <Link to="/contact" className="btn btn-gold btn-lg">Request Wholesale Catalog</Link>
-                    <Link to="/services" className="btn btn-outline btn-lg">Private Label Options</Link>
-                  </div>
-                </ScrollReveal>
+          <div className="packs-1kg-carousel-wrap" ref={carouselRef}>
+            {[
+              { name: 'Safawi Dates', desc: 'Rich Taste, Soft Texture and Natural Sweetness', image: packSafawi },
+              { name: 'Sagai Dates', desc: 'Naturally Sweet, Soft & Chewy', image: packSagai },
+              { name: 'Mabroom Dates', desc: 'Premium Quality Large & Juicy Dates', image: packMabroom },
+              { name: 'Ajwa Dates', desc: 'The Finest Ajwa, Rich in Tradition', image: packAjwa },
+              { name: 'Sukkari Dates', desc: 'Golden, Soft & Delightfully Sweet', image: packSukkari },
+            ].map((pack) => (
+              <div key={pack.name} className="pack-1kg-card">
+                <div className="pack-1kg-card__image-wrap">
+                  <img src={pack.image} alt={pack.name} className="pack-1kg-card__image" />
+                </div>
+                <div className="pack-1kg-card__content">
+                  <h3 className="pack-1kg-card__name">{pack.name}</h3>
+                  <p className="pack-1kg-card__desc">{pack.desc}</p>
+                  <Link to="/contact" className="pack-1kg-card__btn">
+                    View Details
+                  </Link>
+                </div>
               </div>
+            ))}
+          </div>
 
-              {/* Right Side */}
-              <div className="packs-v2-5kg-right">
-                <ScrollReveal delay={0.2}>
-                  <div className="pack-v2-5kg-image-container">
-                    <div className="mazafati-backdrop-halo" />
-                    <img src={packMazafati} alt="Premium 5 KG Mazafati Dates Box" className="pack-v2-5kg-image" />
-                  </div>
-                </ScrollReveal>
-              </div>
-            </div>
+          <div className="packs-1kg-dots">
+            <span className="packs-1kg-dot active"></span>
+            <span className="packs-1kg-dot"></span>
+            <span className="packs-1kg-dot"></span>
           </div>
         </div>
       </section>
 
-      {/* ===== WHOLESALE & BULK SUPPLY ===== */}
-      <section className="section dates-section">
-        <div className="container">
-          <ScrollReveal style={{ textAlign: 'center', marginBottom: 48 }}>
-            <span className="section-label" style={{ color: '#C9A227' }}>B2B Supply</span>
-            <h2 className="section-title" style={{ color: '#fff' }}>
-              Wholesale & <span style={{ color: '#C9A227' }}>Bulk Supply</span>
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal>
-            <div className="dates-wholesale-grid">
-              {[
-                { icon: '📦', title: 'Bulk Orders', desc: 'Minimum 100KG per variety with competitive wholesale pricing for large-volume buyers.' },
-                { icon: '🏷️', title: 'Private Label', desc: 'Create your own dates brand with our complete private labelling and packaging service.' },
-                { icon: '🚢', title: 'Global Shipping', desc: 'Air and sea freight to 25+ countries with complete customs documentation.' },
-                { icon: '📋', title: 'Documentation', desc: 'Full export paperwork — COA, phytosanitary certificate, Halal certification included.' },
-                { icon: '🎁', title: 'Gift Packaging', desc: 'Premium gift boxes, Ramadan special packs, and custom corporate gifting solutions.' },
-                { icon: '⭐', title: 'Quality Promise', desc: 'Every batch inspected, graded, and certified before dispatch. 100% satisfaction guarantee.' },
-              ].map((item, i) => (
-                <div key={item.title} className="dates-wholesale-card">
-                  <span className="dates-wholesale-card__icon">{item.icon}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
-                </div>
-              ))}
+      {/* ===== 5 KG MAZAFATI DATES ===== */}
+      <section className="mazafati-section">
+        <div className="mazafati-full-layout">
+          {/* Left — text content */}
+          <ScrollReveal className="mazafati-left">
+            <span className="mazafati-label">Our 5 KG</span>
+            <h2 className="mazafati-heading">Mazafati Dates</h2>
+            <div className="mazafati-divider">
+              <span className="mazafati-divider__emblem">✦</span>
             </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* ===== GLOBAL IMPORT COUNTRIES ===== */}
-      <section className="section dates-section" style={{ background: 'linear-gradient(180deg, #0a1a0a 0%, #081408 100%)' }}>
-        <div className="container">
-          <ScrollReveal style={{ textAlign: 'center', marginBottom: 40 }}>
-            <span className="section-label" style={{ color: '#C9A227' }}>Our Reach</span>
-            <h2 className="section-title" style={{ color: '#fff' }}>
-              Global <span style={{ color: '#C9A227' }}>Import Countries</span>
-            </h2>
-            <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.6)', margin: '0 auto 40px' }}>
-              Our premium dates reach discerning buyers across these markets and beyond.
+            <p className="mazafati-desc">
+              Experience the rich taste and natural sweetness of our Premium 5 KG Mazafati Dates. Known for their soft texture, juicy flesh, and deep caramel-like flavor.
             </p>
-          </ScrollReveal>
-          <ScrollReveal>
-            <div className="dates-countries-grid">
-              {importCountries.map(c => (
-                <div key={c} className="dates-country-chip">{c}</div>
-              ))}
+            <div className="mazafati-features">
+              <div className="mazafati-feature">
+                <div className="mazafati-feature__icon">
+                  <Leaf size={20} />
+                </div>
+                <div className="mazafati-feature__text">
+                  <strong>Farm Fresh</strong>
+                  <span>Handpicked Dates</span>
+                </div>
+              </div>
+              <div className="mazafati-feature">
+                <div className="mazafati-feature__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  </svg>
+                </div>
+                <div className="mazafati-feature__text">
+                  <strong>Soft & Juicy</strong>
+                  <span>Perfectly Sourced</span>
+                </div>
+              </div>
+              <div className="mazafati-feature">
+                <div className="mazafati-feature__icon">
+                  <Package size={20} />
+                </div>
+                <div className="mazafati-feature__text">
+                  <strong>5 KG Pack</strong>
+                  <span>Ideal for Families & Bulk</span>
+                </div>
+              </div>
+              <div className="mazafati-feature">
+                <div className="mazafati-feature__icon">
+                  <ShieldCheck size={20} />
+                </div>
+                <div className="mazafati-feature__text">
+                  <strong>Export Quality</strong>
+                  <span>Hygienically Packed</span>
+                </div>
+              </div>
             </div>
+            <Link to="/contact" className="mazafati-cta-btn">
+              Enquire Now
+              <span className="mazafati-cta-btn__arrow">
+                <ArrowRight size={16} />
+              </span>
+            </Link>
           </ScrollReveal>
+
+          {/* Right — yellow box image */}
+          <div className="mazafati-visual">
+            <img src={mazafatiBox} alt="Premium 5 KG Mazafati Dates Box" />
+          </div>
         </div>
       </section>
 
-      {/* ===== EXPORT SPECS ===== */}
-      <section className="section dates-section">
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 72, alignItems: 'center' }}>
-            <ScrollReveal>
-              <span className="section-label" style={{ color: '#C9A227' }}>Export Information</span>
-              <h2 className="section-title" style={{ color: '#fff' }}>
-                Export <span style={{ color: '#C9A227' }}>Specifications</span>
-              </h2>
-              <p style={{ color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: 32 }}>
-                We provide complete export documentation, phytosanitary certificates, and customs clearance support for all date shipments.
-              </p>
-              <Link to="/contact" className="btn btn-gold btn-lg">Start Your Order <ArrowRight size={18} /></Link>
-            </ScrollReveal>
-            <ScrollReveal delay={0.2}>
-              <div className="export-specs-table">
-                {exportSpecs.map(spec => (
-                  <div key={spec.label} className="export-spec-row">
-                    <span className="export-spec-label">{spec.label}</span>
-                    <span className="export-spec-value">{spec.value}</span>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
+      {/* ===== WHY CHOOSE OUR PREMIUM DATES ===== */}
+      <section className="why-choose-us-section" style={{ backgroundImage: `url(${whyChooseUsBg})` }}>
+        <div className="why-choose-us-overlay" />
+        <div className="container why-choose-us-container">
+          <ScrollReveal style={{ textAlign: 'center', marginBottom: 48 }}>
+            <h2 className="why-choose-us-title">WHY CHOOSE OUR PREMIUM DATES?</h2>
+          </ScrollReveal>
+          
+          <div className="why-choose-us-grid">
+            {[
+              {
+                icon: <Leaf size={32} />,
+                title: '100% Natural',
+                subtitle: 'No Preservatives'
+              },
+              {
+                icon: <Award size={32} />,
+                title: 'Premium Quality',
+                subtitle: 'Export Standard'
+              },
+              {
+                icon: <Sprout size={32} />,
+                title: 'Carefully Handpicked',
+                subtitle: 'from Best Farms'
+              },
+              {
+                icon: <ShieldCheck size={32} />,
+                title: 'Hygienically Processed',
+                subtitle: '& Packed'
+              },
+              {
+                icon: <Truck size={32} />,
+                title: 'Reliable Supply',
+                subtitle: 'Worldwide'
+              }
+            ].map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 0.08} className="why-choose-us-item">
+                <div className="why-choose-us-icon-wrap">
+                  {item.icon}
+                </div>
+                <h3 className="why-choose-us-item-title">{item.title}</h3>
+                <p className="why-choose-us-item-subtitle">{item.subtitle}</p>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
@@ -536,9 +433,9 @@ export default function DatesPage() {
         <div className="container">
           <ScrollReveal>
             <div className="dates-cta-section">
-              <span className="section-label" style={{ color: '#C9A227', position: 'relative', zIndex: 2 }}>Ready to Order?</span>
+              <span className="section-label" style={{ color: 'var(--gold)', position: 'relative', zIndex: 2 }}>Ready to Order?</span>
               <h2 className="section-title" style={{ color: '#fff', position: 'relative', zIndex: 2, marginBottom: 16 }}>
-                Source Premium <span style={{ color: '#C9A227' }}>Dates</span> for Your Market
+                Source Premium <span style={{ color: 'var(--gold)' }}>Dates</span> for Your Market
               </h2>
               <p style={{ color: 'rgba(255,255,255,0.65)', marginBottom: 36, maxWidth: 560, margin: '0 auto 36px', position: 'relative', zIndex: 2, fontSize: '1.05rem', lineHeight: 1.8 }}>
                 Get competitive pricing, free samples, and complete export support. Our dates specialists are ready to serve you.

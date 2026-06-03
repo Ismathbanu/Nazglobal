@@ -8,6 +8,8 @@ import spicesImg from '../assets/spices_display.png'
 import oilsImg from '../assets/oils_natural.png'
 import fruitsImg from '../assets/fruits_vegetables.png'
 import datesImg from '../assets/dates_luxury.png'
+import productsBannerBg from '../assets/products_banner_bg.png'
+import { ShieldCheck, Leaf, PackageCheck } from 'lucide-react'
 import './ProductsPage.css'
 
 const categories = [
@@ -106,16 +108,53 @@ export default function ProductsPage() {
   return (
     <PageTransition>
       {/* ===== HERO ===== */}
-      <section className="products-hero">
-        <div className="container products-hero__content">
-          <ScrollReveal>
-            <span className="section-label" style={{ color: '#C9A227' }}>Our Product Range</span>
-            <h1 className="section-title" style={{ color: '#fff', fontSize: 'clamp(2.2rem,5.5vw,3.5rem)' }}>
-              Premium <span style={{ color: '#C9A227' }}>Food Products</span><br />for Global Markets
+      <section className="products-page-hero">
+        <div className="products-page-hero__container">
+          <ScrollReveal className="products-page-hero__text">
+            <span className="products-page-hero__script">Premium Quality</span>
+            <h1 className="products-page-hero__title">
+              Our Premium<br />
+              Food <span>Products</span>
             </h1>
-            <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.8)', marginBottom: 0 }}>
-              6 categories · 30+ products · Sourced from India · Delivered worldwide with premium quality assurance.
+            <p className="products-page-hero__desc">
+              A wide range of premium food products sourced from the finest farms and delivered to the world with integrity and excellence.
             </p>
+            
+            <div className="products-page-hero__trust">
+              <div className="products-page-hero__trust-item">
+                <div className="products-page-hero__trust-icon">
+                  <ShieldCheck size={16} strokeWidth={2.5} />
+                </div>
+                <div className="products-page-hero__trust-text">
+                  <h4>100% Natural</h4>
+                  <p>Premium Quality</p>
+                </div>
+              </div>
+
+              <div className="products-page-hero__trust-item">
+                <div className="products-page-hero__trust-icon">
+                  <Leaf size={16} strokeWidth={2.5} />
+                </div>
+                <div className="products-page-hero__trust-text">
+                  <h4>Hygienically</h4>
+                  <p>Processed</p>
+                </div>
+              </div>
+
+              <div className="products-page-hero__trust-item">
+                <div className="products-page-hero__trust-icon">
+                  <PackageCheck size={16} strokeWidth={2.5} />
+                </div>
+                <div className="products-page-hero__trust-text">
+                  <h4>Export Grade</h4>
+                  <p>Secure Packaging</p>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal className="products-page-hero__visual" delay={0.2}>
+            <img src={productsBannerBg} alt="NAZ Global Premium Products Banner" />
           </ScrollReveal>
         </div>
       </section>
@@ -167,7 +206,7 @@ export default function ProductsPage() {
         <div className="container">
           <ScrollReveal>
             <h2 className="section-title" style={{ color: '#fff', marginBottom: 16 }}>
-              Need Custom <span style={{ color: '#C9A227' }}>Product Specifications</span>?
+              Need Custom <span style={{ color: 'var(--gold)' }}>Product Specifications</span>?
             </h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', marginBottom: 36, maxWidth: 560, margin: '0 auto 36px', fontSize: '1.05rem', lineHeight: 1.8 }}>
               We accommodate custom grades, packaging sizes, and private label requirements for all product categories.

@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Globe, Award, Package, Users, Star, ChevronLeft, ChevronRight, TrendingUp, Shield, Leaf, Truck } from 'lucide-react'
+import { ArrowRight, Globe, Award, Package, Users, Star, ChevronLeft, ChevronRight, TrendingUp, Shield, ShieldCheck, Leaf, Truck, Crown, Handshake } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import ScrollReveal from '../components/ScrollReveal'
 import heroBg from '../assets/hero_banner.png'
 import datesPremium from '../assets/dates_premium.png'
+import datesLuxury from '../assets/dates_luxury.png'
 import spices from '../assets/spices_collection.png'
 import privateLabel from '../assets/private_label.png'
 import exportImg from '../assets/export_logistics.png'
@@ -14,22 +15,103 @@ import riceImg from '../assets/rice_collection.png'
 import pulsesImg from '../assets/pulses_seeds.png'
 import oilsImg from '../assets/oils_natural.png'
 import fruitsImg from '../assets/fruits_vegetables.png'
+import honeyImg from '../assets/honey_collection.png'
+import dryChillies from '../assets/dry_chillies.png'
+import curryPowders from '../assets/curry_powders.png'
+import brandNaz from '../assets/brand_nazfarmfresh.png'
+import brandAjmeer from '../assets/brand_ajmeergate.png'
+import brandKerala from '../assets/brand_keralafarm.png'
 import './HomePage.css'
 
 const stats = [
-  { icon: Globe, value: '25+', label: 'Countries Served' },
-  { icon: Award, value: '12+', label: 'Years Experience' },
-  { icon: Package, value: '200+', label: 'Product SKUs' },
-  { icon: Users, value: '500+', label: 'Global Clients' },
+  { icon: Package, value: '100+', label: 'Premium Products' },
+  { icon: Globe, value: '25+', label: 'Countries Exported' },
+  { icon: Users, value: '5000+', label: 'Happy Clients' },
+  { icon: Award, value: '15+', label: 'Years of Excellence' },
+  { icon: ShieldCheck, value: '100', label: 'Quality Assured', suffix: '%' },
 ]
 
+const categoryIcons = {
+  dates: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <ellipse cx="7" cy="14" rx="3.5" ry="6" transform="rotate(-30 7 14)" />
+      <ellipse cx="12" cy="10" rx="3" ry="5.5" transform="rotate(30 12 10)" />
+      <ellipse cx="17" cy="15" rx="2.5" ry="5" transform="rotate(-15 17 15)" />
+      <path d="M7 10c0-1.5 1.5-3 3.5-3M17 11.5c-.8-1.2-2-1.8-3-1.8" />
+    </svg>
+  ),
+  rice: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2c1.5 3 2 6 2 9s-.5 6-2 9c-1.5-3-2-6-2-9s.5-6 2-9z" />
+      <path d="M8 5c1 2 1.5 4 1.5 6s-.5 4-1.5 6c-1-2-1.5-4-1.5-6s.5-4 1.5-6z" opacity="0.8" />
+      <path d="M16 5c1 2 1.5 4 1.5 6s-.5 4-1.5 6c-1-2-1.5-4-1.5-6s.5-4 1.5-6z" opacity="0.8" />
+    </svg>
+  ),
+  spices: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3v18M3 12h18" />
+      <path d="M5.64 5.64l12.72 12.72M5.64 18.36L18.36 5.64" />
+      <circle cx="12" cy="12" r="2.2" fill="currentColor" />
+      <circle cx="12" cy="5" r="1.2" fill="currentColor" />
+      <circle cx="12" cy="19" r="1.2" fill="currentColor" />
+      <circle cx="5" cy="12" r="1.2" fill="currentColor" />
+      <circle cx="21" cy="12" r="1.2" fill="currentColor" />
+    </svg>
+  ),
+  pulses: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="8" cy="8" r="2.5" />
+      <circle cx="16" cy="8" r="2.5" />
+      <circle cx="8" cy="16" r="2.5" />
+      <circle cx="16" cy="16" r="2.5" />
+      <path d="M8 5a4 4 0 0 1 4 4M16 5a4 4 0 0 1 4 4M8 13a4 4 0 0 1 4 4M16 13a4 4 0 0 1 4 4" strokeDasharray="1 1" />
+    </svg>
+  ),
+  oil: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2v3M10 5h4M8 9a4 4 0 0 1 8 0v9a4 4 0 0 1-8 0V9z" />
+      <path d="M12 11.5c-1 0-1.8 1-1.8 2s.8 1.5 1.8 1.5 1.8-.5 1.8-1.5-.8-2-1.8-2z" fill="currentColor" opacity="0.35" />
+      <path d="M12 11.5c-1 0-1.8 1-1.8 2s.8 1.5 1.8 1.5 1.8-.5 1.8-1.5-.8-2-1.8-2z" />
+    </svg>
+  ),
+  honey: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 3h8M7 7h10M6 10c0-1.8 1.2-2.8 1.2-2.8h9.6s1.2 1 1.2 2.8c0 3.6-1.8 7.2-7.2 7.2S6 13.6 6 10z" />
+      <path d="M10 13.5a1.8 1.8 0 1 0 3.6 0" />
+      <path d="M12 7v3.5M12 10.5a.8.8 0 1 0 0 1.6.8.8 0 1 0 0-1.6z" fill="currentColor" />
+    </svg>
+  ),
+  fruits: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="13" r="8" />
+      <path d="M12 5c0-1.5 1-2.5 2-2.5" />
+      <path d="M12 9c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2z" fill="currentColor" opacity="0.2" />
+      <path d="M12 9c-1 0-2 1-2 2s1 2 2 2 2-1 2-2-1-2-2-2z" />
+    </svg>
+  ),
+  chillies: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 3c-1 .3-2.5 1.5-3.2 3.2-1.8-.4-4 .4-5.5 1.8a7.2 7.2 0 0 0-1.8 6.8c0 .8.8.8 1.2.4A16.5 16.5 0 0 1 17.2 8c1.1-.7 2.2-2.2 2.5-3.2-.3-.8-1.1-1.5-1.7-1.8z" />
+      <path d="M14 6c.4-1.2.4-2.4 0-3.6" />
+    </svg>
+  ),
+  curry: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 14c0 3.5 3.6 6.3 8 6.3s8-2.8 8-6.3H3z" />
+      <path d="M4 14c.4-2.7 3.6-5.4 7-5.4s6.6 2.7 7 5.4H4z" fill="currentColor" opacity="0.25" />
+      <path d="M5 14c.8-2.2 3.1-4 6.2-4s5.4 1.8 6.2 4" />
+      <path d="M11 5.5a.8.8 0 1 1 1.6 0v2h-1.6z" />
+    </svg>
+  )
+}
+
 const productCategories = [
-  { name: 'Rice', image: riceImg, desc: 'Premium aged long-grain Basmati, Jeerakasala, and traditional export quality rice.', to: '/products#rice', color: '#DAA520', badge: 'Export Quality' },
-  { name: 'Pulses & Seeds', image: pulsesImg, desc: 'Nutrient-rich, high-protein lentils, chickpeas, organic chia and sesame seeds.', to: '/products#pulses', color: '#7D5A2C', badge: 'High Protein' },
-  { name: 'Spices & Seasoning', image: spices, desc: 'Exquisite organic spices, pure ground powders, and authentic curry blends.', to: '/products#spices', color: '#C0392B', badge: 'Aromatic & Pure' },
-  { name: 'Oil & Natural Products', image: oilsImg, desc: 'Cold-pressed virgin coconut oil, pure wild forest honey, and organic jaggery.', to: '/products#oils', color: '#2ECC71', badge: '100% Natural' },
-  { name: 'Fruits & Vegetable', image: fruitsImg, desc: 'Farm-fresh, handpicked seasonal fruits and vegetables sourced directly from farms.', to: '/products#fruits', color: '#F39C12', badge: 'Farm Fresh' },
-  { name: 'Premium Dates', image: datesPremium, desc: 'Luxury Ajwa, Sukkari, Mabroom, and gourmet imported date varieties.', to: '/dates', color: '#8B4513', badge: 'Luxury Grade' },
+  { name: 'Premium Dates', image: datesPremium, to: '/dates' },
+  { name: 'Rice', image: riceImg, to: '/products#rice' },
+  { name: 'Pulses & Seeds', image: pulsesImg, to: '/products#pulses' },
+  { name: 'Spices &\nCurry Powders', image: spices, to: '/products#spices' },
+  { name: 'Oils &\nNatural Products', image: oilsImg, to: '/products#oils' },
+  { name: 'Fruits &\nVegetables', image: fruitsImg, to: '/products#fruits' },
 ]
 
 const testimonials = [
@@ -38,13 +120,9 @@ const testimonials = [
   { name: 'Sarah Abdullah', role: 'F&B Director, Kuala Lumpur', text: 'Premium quality spices and rice at competitive export prices. NAZ Global is our go-to Indian supplier for all food categories.', rating: 5 },
 ]
 
-const brands = [
-  { name: 'Ajmeer Gate', tagline: 'Premium Date Collections', color: '#2d1a0a', accent: '#C9A227' },
-  { name: 'Kerala Farm', tagline: 'Pure Organic From God\'s Own Country', color: '#1a2e1a', accent: '#3D6B3D' },
-  { name: 'Naz Farm Fresh', tagline: 'Farm to Table, World to You', color: '#1a1a2e', accent: '#5B7FA3' },
-]
+// Brands are rendered statically below to match custom reference logos
 
-function StatCounter({ value, label, icon: Icon, delay }) {
+function StatCounter({ value, label, icon: Icon, delay, ...props }) {
   const [count, setCount] = useState(0)
   const ref = useRef(null)
   const [started, setStarted] = useState(false)
@@ -67,6 +145,8 @@ function StatCounter({ value, label, icon: Icon, delay }) {
     return () => observer.disconnect()
   }, [started, value])
 
+  const suffix = value.includes('+') ? '+' : (props.suffix || '')
+
   return (
     <motion.div
       ref={ref}
@@ -77,9 +157,9 @@ function StatCounter({ value, label, icon: Icon, delay }) {
       transition={{ delay, duration: 0.6 }}
     >
       <div className="stat-card__icon">
-        <Icon size={22} />
+        <Icon size={24} strokeWidth={1.5} />
       </div>
-      <div className="stat-card__value">{count}{value.includes('+') ? '+' : ''}</div>
+      <div className="stat-card__value">{count}{suffix}</div>
       <div className="stat-card__label">{label}</div>
     </motion.div>
   )
@@ -116,8 +196,8 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <span className="badge badge-gold hero__badge">
-              🌍 India · UAE · Malaysia
+            <span className="hero__badge">
+              <Leaf size={14} className="hero__badge-icon" /> Premium Quality • Global Standards
             </span>
           </motion.div>
 
@@ -127,9 +207,11 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Global Food Exporters
+            Global Food
             <br />
-            <span className="hero__title-accent">From India To The World</span>
+            Exporters From
+            <br />
+            <span className="hero__title-accent">India</span> To The World
           </motion.h1>
 
           <motion.p
@@ -139,7 +221,6 @@ export default function HomePage() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             Premium Dates, Rice, Spices, Pulses &amp; Private Labelling Solutions
-            <br />for Global B2B Buyers and Distributors
           </motion.p>
 
           <motion.div
@@ -148,24 +229,12 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <Link to="/products" className="btn btn-gold btn-lg">
+            <Link to="/products" className="btn btn-primary btn-lg">
               Explore Products <ArrowRight size={18} />
             </Link>
             <Link to="/contact" className="btn btn-outline btn-lg">
-              Get Quote
+              Get Quote <ArrowRight size={18} />
             </Link>
-          </motion.div>
-
-          {/* Trust indicators */}
-          <motion.div
-            className="hero__trust"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-          >
-            {['FSSAI Certified', 'ISO 22000', 'APEDA Registered', 'Halal Approved'].map(t => (
-              <span key={t} className="hero__trust-chip">✓ {t}</span>
-            ))}
           </motion.div>
         </motion.div>
 
@@ -181,142 +250,98 @@ export default function HomePage() {
       </section>
 
       {/* ===== STATS ===== */}
-      <section className="section section-white stats-section">
+      <section className="stats-section">
         <div className="container">
           <div className="stats-grid">
             {stats.map((s, i) => (
-              <StatCounter key={s.label} {...s} delay={i * 0.1} />
+              <StatCounter key={s.label} {...s} delay={i * 0.08} />
             ))}
           </div>
         </div>
       </section>
 
       {/* ===== ABOUT PREVIEW ===== */}
-      <section className="section section-cream">
-        <div className="container">
-          <div className="about-split">
-            <ScrollReveal className="about-split__visual">
-              <div className="about-split__img-wrap">
-                <img src={aboutTeam} alt="NAZ Global Team" className="img-cover" />
-                <div className="about-split__badge-card">
-                  <Award size={20} />
-                  <div>
-                    <strong>12+ Years</strong>
-                    <span>of Export Excellence</span>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
+      <section className="about-section">
+        <div className="about-container-full">
+          <ScrollReveal className="about-split__visual" delay={0.1}>
+            <img src={aboutTeam} alt="NAZ Global Facility and Premium Products" />
+          </ScrollReveal>
 
-            <ScrollReveal delay={0.2} className="about-split__text">
-              <span className="section-label">Who We Are</span>
-              <h2 className="section-title">
-                Trusted Global <span>Food Trading</span> Partner
-              </h2>
-              <p className="section-subtitle">
-                NAZ Global Ventures Pvt Ltd is a premium international food import-export and general trading company with deep roots in Kerala, India — and a global reach spanning UAE, Malaysia, and beyond.
-              </p>
-              <div className="about-values">
-                {[
-                  { icon: Shield, label: 'Quality Assured', desc: 'Every product meets international export standards' },
-                  { icon: Globe, label: 'Global Network', desc: 'Active operations across 25+ countries' },
-                  { icon: Leaf, label: 'Organic & Natural', desc: 'Farm-fresh, minimally processed products' },
-                  { icon: Truck, label: 'Reliable Logistics', desc: 'End-to-end export documentation & shipping' },
-                ].map(({ icon: Icon, label, desc }) => (
-                  <div className="about-value" key={label}>
-                    <div className="about-value__icon"><Icon size={18} /></div>
-                    <div>
-                      <strong>{label}</strong>
-                      <p>{desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <Link to="/about" className="btn btn-primary">
-                Our Story <ArrowRight size={16} />
-              </Link>
-            </ScrollReveal>
+          <ScrollReveal className="about-split__text">
+            <span className="about-label">ABOUT US</span>
+            <h2 className="about-heading">
+              Delivering Purity, Quality & Trust<br />
+              Across The Globe
+            </h2>
+            <p className="about-desc">
+              NAZ Global Ventures Pvt Ltd is a leading export–import and general trading company from India, delivering premium quality food products to global markets. We combine modern infrastructure, stringent quality standards and ethical business practices to ensure customer satisfaction worldwide.
+            </p>
+            <Link to="/about" className="about-cta-btn">
+              Know More About Us <ArrowRight size={18} />
+            </Link>
+          </ScrollReveal>
+
+          {/* Decorative leaf illustration */}
+          <div className="about-leaf-decor" aria-hidden="true">
+            <svg viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M160 380C160 380 170 300 150 240C130 180 90 140 80 100C70 60 85 20 100 5" stroke="rgba(26,62,33,0.12)" strokeWidth="2" fill="none"/>
+              <path d="M100 5C100 5 130 40 120 90C110 140 70 170 60 220C50 270 80 320 100 350" stroke="rgba(26,62,33,0.10)" strokeWidth="1.5" fill="none"/>
+              <path d="M100 80C100 80 140 60 155 80C170 100 150 130 130 130C110 130 100 110 100 80Z" fill="rgba(26,62,33,0.06)" stroke="rgba(26,62,33,0.12)" strokeWidth="1.5"/>
+              <path d="M80 150C80 150 40 140 30 165C20 190 45 210 65 205C85 200 85 175 80 150Z" fill="rgba(26,62,33,0.06)" stroke="rgba(26,62,33,0.12)" strokeWidth="1.5"/>
+              <path d="M90 240C90 240 130 225 142 248C154 271 135 298 112 295C89 292 85 265 90 240Z" fill="rgba(26,62,33,0.06)" stroke="rgba(26,62,33,0.12)" strokeWidth="1.5"/>
+              <path d="M120 320C120 320 80 315 72 335C64 355 85 372 105 368C125 364 128 345 120 320Z" fill="rgba(26,62,33,0.05)" stroke="rgba(26,62,33,0.10)" strokeWidth="1.5"/>
+              {/* Leaf veins */}
+              <path d="M100 80C110 95 120 105 130 110" stroke="rgba(26,62,33,0.08)" strokeWidth="1" fill="none"/>
+              <path d="M80 150C65 170 55 185 50 195" stroke="rgba(26,62,33,0.08)" strokeWidth="1" fill="none"/>
+              <path d="M90 240C105 260 115 275 120 285" stroke="rgba(26,62,33,0.08)" strokeWidth="1" fill="none"/>
+            </svg>
           </div>
         </div>
       </section>
 
       {/* ===== PRODUCTS GRID ===== */}
-      <section className="section section-white">
+      <section className="section products-section">
         <div className="container">
-          <ScrollReveal className="section-header">
-            <span className="section-label">What We Export</span>
-            <h2 className="section-title">Our <span>Product</span> Categories</h2>
-            <p className="section-subtitle">From premium dates to artisan spices — sourced from India's finest farms, packaged for global markets.</p>
-          </ScrollReveal>
+          <div className="products-section__header-row">
+            <ScrollReveal className="products-section__header-left">
+              <span className="products-section__label">OUR PRODUCTS</span>
+              <h2 className="products-section__title">
+                Premium Quality Products<br />
+                Sourced From The Finest Farms
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal className="products-section__header-right" delay={0.1}>
+              <Link to="/products" className="products-section__view-all-btn">
+                View All Products <ArrowRight size={18} />
+              </Link>
+            </ScrollReveal>
+          </div>
 
-          <div className="products-grid">
+          <div className="product-category-grid">
             {productCategories.map((cat, i) => (
-              <ScrollReveal key={cat.name} delay={i * 0.06}>
-                <Link
-                  to={cat.to}
-                  className="product-image-card"
-                  style={{
-                    '--accent-color': cat.color,
-                  }}
-                >
-                  <div className="product-image-card__bg-wrap">
-                    <img src={cat.image} alt={cat.name} className="product-image-card__image" />
-                    <div className="product-image-card__overlay" />
+              <ScrollReveal key={cat.name} delay={i * 0.05}>
+                <Link to={cat.to} className="product-category-card">
+                  <div className="product-category-card__image-container">
+                    <img src={cat.image} alt={cat.name.replace('\n', ' ')} className="product-category-card__image" />
                   </div>
-                  <div className="product-image-card__content">
-                    <div className="product-image-card__body">
-                      <h3 className="product-image-card__name">{cat.name}</h3>
-                      <p className="product-image-card__desc">{cat.desc}</p>
-                      <span className="product-image-card__cta">
-                        View Products <ArrowRight size={16} />
-                      </span>
-                    </div>
+                  <div className="product-category-card__content">
+                    <h3 className="product-category-card__title">
+                      {cat.name.split('\n').map((line, idx) => (
+                        <span key={idx} className="product-category-card__title-line">
+                          {line}
+                          {idx < cat.name.split('\n').length - 1 && <br />}
+                        </span>
+                      ))}
+                    </h3>
                   </div>
                 </Link>
               </ScrollReveal>
             ))}
           </div>
-
-          <ScrollReveal className="products-cta">
-            <Link to="/products" className="btn btn-outline-dark btn-lg">
-              View All Products <ArrowRight size={18} />
-            </Link>
-          </ScrollReveal>
         </div>
       </section>
 
-      {/* ===== PREMIUM DATES SHOWCASE ===== */}
-      <section className="dates-showcase">
-        <div className="dates-showcase__bg">
-          <img src={datesPremium} alt="Premium Dates" className="img-cover" />
-          <div className="dates-showcase__overlay" />
-        </div>
-        <div className="container dates-showcase__content">
-          <ScrollReveal>
-            <span className="section-label" style={{ color: '#C9A227' }}>Our Specialty</span>
-            <h2 className="section-title" style={{ color: '#fff' }}>
-              World-Class <span style={{ color: '#C9A227' }}>Premium Dates</span>
-            </h2>
-            <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.75)' }}>
-              Direct sourced from Saudi Arabia and UAE. Premium varieties for retail, gifting, and bulk export.
-            </p>
-          </ScrollReveal>
 
-          <div className="dates-varieties">
-            {['Sukkari', 'Ajwa', 'Mabroom', 'Safawi', 'Sagai'].map((d, i) => (
-              <ScrollReveal key={d} delay={i * 0.1}>
-                <div className="date-chip">{d}</div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          <ScrollReveal delay={0.3}>
-            <Link to="/dates" className="btn btn-gold btn-lg">
-              Explore Dates Collection <ArrowRight size={18} />
-            </Link>
-          </ScrollReveal>
-        </div>
-      </section>
 
       {/* ===== PRIVATE LABEL PREVIEW ===== */}
       <section className="section section-light">
@@ -351,12 +376,12 @@ export default function HomePage() {
       </section>
 
       {/* ===== GLOBAL PRESENCE ===== */}
-      <section className="section section-green">
+      <section className="section regions-section">
         <div className="container">
-          <ScrollReveal className="section-header" style={{ textAlign: 'center', color: '#fff' }}>
-            <span className="section-label" style={{ color: '#C9A227' }}>Our Reach</span>
-            <h2 className="section-title" style={{ color: '#fff' }}>Global <span style={{ color: '#C9A227' }}>Export</span> Presence</h2>
-            <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.75)', margin: '0 auto 40px' }}>
+          <ScrollReveal className="section-header" style={{ textAlign: 'center' }}>
+            <span className="section-label">Our Reach</span>
+            <h2 className="section-title">Global <span>Export</span> Presence</h2>
+            <p className="section-subtitle" style={{ margin: '0 auto 40px' }}>
               We export to 25+ countries across Asia, Middle East, Africa, and Europe.
             </p>
           </ScrollReveal>
@@ -369,18 +394,22 @@ export default function HomePage() {
               { flag: '🌍', name: 'Global', role: 'Export to 25+ Countries', city: 'Worldwide Delivery' },
             ].map((r, i) => (
               <ScrollReveal key={r.name} delay={i * 0.1}>
-                <div className="region-card card-glass">
-                  <span className="region-card__flag">{r.flag}</span>
+                <div className="region-card">
+                  <div className="region-card__flag-wrapper">
+                    <span className="region-card__flag">{r.flag}</span>
+                  </div>
                   <h3 className="region-card__name">{r.name}</h3>
                   <p className="region-card__role">{r.role}</p>
-                  <p className="region-card__city">{r.city}</p>
+                  <div className="region-card__city-badge">
+                    <span>{r.city}</span>
+                  </div>
                 </div>
               </ScrollReveal>
             ))}
           </div>
 
-          <ScrollReveal style={{ textAlign: 'center', marginTop: 40 }}>
-            <Link to="/export" className="btn btn-gold btn-lg">
+          <ScrollReveal style={{ textAlign: 'center', marginTop: 48 }}>
+            <Link to="/export" className="btn btn-primary btn-lg">
               View Export Operations <ArrowRight size={18} />
             </Link>
           </ScrollReveal>
@@ -388,27 +417,75 @@ export default function HomePage() {
       </section>
 
       {/* ===== OUR BRANDS ===== */}
-      <section className="section section-cream">
+      <section className="section brands-section">
         <div className="container">
           <ScrollReveal className="section-header" style={{ textAlign: 'center' }}>
-            <span className="section-label">Our Portfolio</span>
-            <h2 className="section-title">Our <span>Brands</span></h2>
-            <p className="section-subtitle" style={{ margin: '0 auto 48px' }}>Three distinct brands, one commitment to excellence.</p>
+            <span className="section-label" style={{ color: '#D4AF37' }}>Our Portfolio</span>
+            <h2 className="section-title" style={{ color: '#ffffff' }}>Our <span>Brands</span></h2>
+            <p className="section-subtitle" style={{ margin: '0 auto 48px', color: 'rgba(255,255,255,0.7)' }}>Three distinct brands, one commitment to excellence.</p>
           </ScrollReveal>
 
           <div className="brands-grid">
-            {brands.map((brand, i) => (
-              <ScrollReveal key={brand.name} delay={i * 0.15}>
-                <Link to="/brands" className="brand-card" style={{ background: brand.color }}>
-                  <div className="brand-card__accent" style={{ background: brand.accent }} />
-                  <h3 className="brand-card__name">{brand.name}</h3>
-                  <p className="brand-card__tagline">{brand.tagline}</p>
-                  <span className="brand-card__cta" style={{ color: brand.accent }}>
-                    View Brand <ArrowRight size={14} />
-                  </span>
-                </Link>
-              </ScrollReveal>
-            ))}
+            {/* Card 1: NAZ */}
+            <ScrollReveal delay={0.1}>
+              <Link to="/brands" className="brand-card">
+                <div className="brand-card__left">
+                  <div className="brand-logo-naz">
+                    <div className="brand-logo-naz__top">
+                      <h3>NAZ</h3>
+                      <Leaf size={22} className="brand-logo-naz__leaf" fill="#072214" />
+                    </div>
+                    <span className="brand-logo-naz__sub">GLOBAL VENTURES PVT LTD</span>
+                  </div>
+                  <p className="brand-card__desc">
+                    Wide range of food products sourced from natural farms.
+                  </p>
+                </div>
+                <div className="brand-card__right">
+                  <img src={brandNaz} alt="NAZ Global Ventures mockup" className="brand-card__img" />
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            {/* Card 2: AJMEER GATE */}
+            <ScrollReveal delay={0.2}>
+              <Link to="/brands" className="brand-card">
+                <div className="brand-card__left">
+                  <div className="brand-logo-ajmeer">
+                    <div className="brand-logo-ajmeer__badge">
+                      <Crown size={15} className="brand-logo-ajmeer__crown" fill="#D4AF37" style={{ marginBottom: 2 }} />
+                      <h3>AJMEER</h3>
+                      <span className="brand-logo-ajmeer__sub">GATE</span>
+                    </div>
+                  </div>
+                  <p className="brand-card__desc">
+                    Premium rice varieties for every taste.
+                  </p>
+                </div>
+                <div className="brand-card__right">
+                  <img src={brandAjmeer} alt="Ajmeer Gate Rice mockup" className="brand-card__img" />
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            {/* Card 3: KERALA FARM */}
+            <ScrollReveal delay={0.3}>
+              <Link to="/brands" className="brand-card">
+                <div className="brand-card__left">
+                  <div className="brand-logo-kerala">
+                    <h3>KERALA</h3>
+                    <h3 className="brand-logo-kerala__second">FARM</h3>
+                    <span className="brand-logo-kerala__sub">പഴമയുടെ തനിമ</span>
+                  </div>
+                  <p className="brand-card__desc">
+                    Traditional taste, purity and wellness.
+                  </p>
+                </div>
+                <div className="brand-card__right">
+                  <img src={brandKerala} alt="Kerala Farm Coconut Oil mockup" className="brand-card__img" />
+                </div>
+              </Link>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -433,7 +510,7 @@ export default function HomePage() {
               >
                 <div className="testimonial-stars">
                   {Array(testimonials[testIdx].rating).fill(0).map((_, i) => (
-                    <Star key={i} size={18} fill="#C9A227" color="#C9A227" />
+                    <Star key={i} size={18} fill="var(--gold)" color="var(--gold)" />
                   ))}
                 </div>
                 <p className="testimonial-text">"{testimonials[testIdx].text}"</p>
@@ -466,28 +543,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== EXPORT CTA STRIP ===== */}
-      <section className="export-cta-section">
-        <div className="export-cta-bg">
-          <img src={exportImg} alt="Export Operations" className="img-cover" />
-          <div className="export-cta-overlay" />
-        </div>
-        <div className="container export-cta-content">
-          <ScrollReveal>
-            <span className="section-label" style={{ color: '#C9A227' }}>Ready to Source?</span>
-            <h2 className="section-title" style={{ color: '#fff', maxWidth: 600 }}>
-              Start Your <span style={{ color: '#C9A227' }}>Export Journey</span> With Us Today
-            </h2>
-            <p style={{ color: 'rgba(255,255,255,0.75)', marginBottom: 32, fontSize: '1.05rem' }}>
-              Get competitive pricing, quality assurance, and end-to-end logistics support.
-            </p>
-            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-              <Link to="/contact" className="btn btn-gold btn-lg">Get Free Quote</Link>
-              <Link to="/products" className="btn btn-outline btn-lg">View Products</Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+
     </PageTransition>
   )
 }

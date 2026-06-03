@@ -47,7 +47,7 @@ export default function ContactPage() {
           <ScrollReveal>
             <span className="section-label">Get In Touch</span>
             <h1 className="section-title" style={{ color: '#fff', fontSize: 'clamp(2rem,5vw,3.2rem)' }}>
-              Let's <span style={{ color: '#C9A227' }}>Start a Conversation</span>
+              Let's <span style={{ color: 'var(--gold)' }}>Start a Conversation</span>
             </h1>
             <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.75)' }}>
               Whether you're looking for bulk supply, private labelling, or just want to learn more — we're here to help.
